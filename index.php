@@ -1,6 +1,6 @@
 <?php
 
-header('Location: training.html');
+header('Location: index.html');
 exit;
 
 ?>
