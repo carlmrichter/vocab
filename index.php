@@ -39,15 +39,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-9 col-md-6">
                     <div id="training-list" class="list-group">
-                        <button type="button" class="list-group-item list-item-custom-1">
-                            <div class="pull-left" style="margin-top: 3px">
-                                test
-                            </div>
-                            <div class="pull-right vertical-align">
-                                <span class="badge" style="margin-right: 5px">123</span>
-                                <i class="material-icons">chevron_right</i>
-                            </div>
-                        </button>
+
                     </div>
                 </div>
             </div>
