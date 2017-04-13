@@ -1,3 +1,8 @@
+function sameHeight() {
+    $('#left-box').outerHeight($('#right-box').innerHeight());
+}
+
+
 function navClick(elem) {
     if (!elem.classList.contains("active")){
         elem.classList.toggle("active");

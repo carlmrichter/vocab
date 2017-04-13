@@ -1,14 +1,6 @@
-.jumbotron-transparent {
-    background-color: rgba(220, 220, 220, 0.8);
-    padding: 0;
-    margin: 0;
-    min-height: 100%;
-    min-width: 100%;
-}
-
 .jumbotron-transparent-dark {
     color: #ddd;
-    background-color: rgba(20,20,20,0.8);
+    background-color: rgba(20,20,20,0.9);
 }
 
 .nav-pills>li>a {
@@ -27,6 +19,19 @@
     background-color: rgba(0,0,0,0.6);
 }
 
-.list-group-item, .button.list-group-item {
-    background-color: transparent;
+.list-group>.list-group-item {
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 0;
+    color: #ddd;
+    font-size: larger;
+
 }
+
+.list-group>.list-group-item:hover, .list-group>.list-group-item:focus {
+    background-color: rgba(255, 241, 202, 0.6);
+    color: #222;
+}
+
+
+
+
