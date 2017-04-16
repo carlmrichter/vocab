@@ -1,3 +1,12 @@
+<?php
+$id = -1;
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+}
+//if (isset($_GET['id'])) {
+//    $id = $_GET['id'];
+//}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +21,9 @@
     <link rel="stylesheet" href="css/training.css">
     <link rel="stylesheet" href="css/index.css">
 
-
+    <!--<script>sameHeight();</script>-->
 </head>
-<body onload="sameHeight()">
+<body>
 
 <!--NAVBAR -->
 <div class="navbar navbar-inverse navbar-fixed-top" id="navBar">
@@ -38,15 +47,15 @@
 <div class="bg-image">
     <div class="bg-overlay">
         <div class="container" style="padding-top: 70px">
-            <ul class="nav nav-pills">
-                <li id="language-1" role="presentation" class="active" onclick="navClick(this);"><a href="#">Deutsch - Englisch</a></li>
-                <li id="language-2" role="presentation" onclick="navClick(this);"><a href="#">Englisch - Deutsch</a></li>
+            <ul id="language-bar" class="nav nav-pills">
+                <li id="language-1" role="presentation" class="active" onclick="navClick(this, event);"><a href="">Deutsch - Englisch</a></li>
+                <li id="language-2" role="presentation" onclick="navClick(this, event);"><a href="">Englisch - Deutsch</a></li>
             </ul>
             <br>
             <div class="row" onresize="sameHeight()">
-                <div  class="col-sm-6 col-xs-12">
+                <div class="col-sm-6 col-xs-12">
                     <div id="left-box" class="jumbotron jumbotron-transparent-dark">
-                        <h1>Test 1</h1>
+                        <h1>Test <?=$id?></h1>
                         <p>Das ist ein Beispiel.</p>
                     </div>
                 </div>
@@ -69,7 +78,7 @@
 
 
 <!-- jQuery JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <!-- bootstrap JavaScript -->
 <script src="js/bootstrap.min.js"></script>

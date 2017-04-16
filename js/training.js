@@ -1,9 +1,29 @@
+$(document).ready(function () {
+    $.ajax({
+        url: 'server.php?mode=id',
+        type: 'GET',
+        success: function (echo) {
+            //alert(echo);
+        }
+    });
+
+    var lb = $('#left-box');
+    var rb = $('#right-box');
+    lb.outerHeight(rb.innerHeight());
+    lb.animate({opacity: '1.0'}, 200);
+    rb.animate({opacity: '1.0'}, 400);
+    $('#language-bar').animate({opacity: '1.0'},100);
+});
+
+
+
+
 function sameHeight() {
     $('#left-box').outerHeight($('#right-box').innerHeight());
 }
 
-
-function navClick(elem) {
+function navClick(elem, event) {
+    event.preventDefault();
     if (!elem.classList.contains("active")){
         elem.classList.toggle("active");
         if (elem.id === "language-1"){

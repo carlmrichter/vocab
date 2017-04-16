@@ -12,9 +12,6 @@ body {
     width: 100%;
     height: 100%;
 }
-
-
-
 .bg-image {
 
     width: 100%;
@@ -40,6 +37,11 @@ body {
 
     display: inline-flex;
     align-items: center;
+}
+
+/* --------- pre-animation settings ----------- */
+#training-list {
+    opacity: 0.0;
 }
 
 
