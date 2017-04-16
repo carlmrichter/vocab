@@ -1,42 +1,72 @@
 <?php
+function getFileContent($id) {
+    $directory = 'training/';
+    $files = scandir($directory);
 
+    // open file represented by id
+    $file = fopen($directory.$files[$id + 2], 'r');
 
-if (isset($_POST['mode']) && $_POST['mode'] == 'training'){
-    
-    echo $_POST['id'];
-    exit;
+    // get both language names out of first line of file
+    $languages = explode(' - ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
+
+    // build return array
+    $return = array();
+    $return['lang1'] = $languages[0];
+    $return['lang2'] = $languages[1];
+    $return['content'] = array();
+    for($i = 0, $count = 0; !feof($file); $i++, $count++) {
+        $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
+        if($line[0] == '\n' || $line[0] == ''){
+            $count--;
+            continue;
+        }
+        $return['content'][$i] = array();
+        $return['content'][$i][0] = $line[0];
+        $return['content'][$i][1] = $line[1];
+    }
+    $return['count'] = $count;
+    fclose($file);
+    return json_encode($return);
 }
 
+if(isset($_POST['id'])) {
+    echo getFileContent($_POST['id']);
+    exit;
+}
 
 switch ($_GET['mode']){
     case 'list':
         $directory = 'training/';
-        // für jede Datei mit Endung .txt im Verzeichnis training
+        // filenames of directory
         $files = scandir($directory);
         $count = count($files);
-
-
         $return = array();
+        // scandir() returns array with first elements: '.' and '..' --> $i = 2
         for ($i = 2; $i < $count; $i++) {
             $line_cnt = 0;
             $file = fopen($directory.$files[$i], 'r');
+            // get languages from first line of .txt
             $lang = fgets($file);
             $lang = trim(preg_replace('/\s+/', ' ', $lang));
-            while(!feof($file)){
-                $line = fgets($file);
-                $line_cnt++;
+            // count lines
+            for($line_cnt = 0; !feof($file); $line_cnt++) {
+                $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
+                if ($line[0] == '\n' || $line[0] == '') {
+                    $line_cnt--;
+                }
             }
             fclose($file);
+            // get rid of filename extension
             $filename_no_ext = explode('.', $files[$i]);
+            //build answer array
             $return[$i-2] = array();
             $return[$i-2]['name'] = $lang.': '.$filename_no_ext[0];
+            //$return[$i-2]['lang1'] = $languages[0];
+            //$return[$i-2]['lang2'] = $languages[1];
             $return[$i-2]['line_cnt'] = $line_cnt;
         }
-
+        // submit answer array in json format
         echo json_encode($return);
-        break;
-    case 'id':
-
         break;
     default:
         break;

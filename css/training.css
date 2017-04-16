@@ -1,7 +1,21 @@
 .jumbotron-transparent-dark {
     color: #ddd;
     background-color: rgba(20,20,20,0.9);
-    height: 21.5rem;
+    /*height: 21.5rem;*/
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.jumbotron-transparent-correct {
+    color: #ddd;
+    background-color: rgba(0, 150, 0, 0.9);
+}
+
+.jumbotron-transparent-wrong {
+    color: #ddd;
+    background-color: rgba(150, 0, 0, 0.9);
 }
 
 .nav-pills>li>a {
