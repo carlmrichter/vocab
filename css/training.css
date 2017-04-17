@@ -13,10 +13,22 @@
     background-color: rgba(0, 150, 0, 0.9);
 }
 
+
 .jumbotron-transparent-wrong {
     color: #ddd;
     background-color: rgba(150, 0, 0, 0.9);
 }
+
+
+.jumbotron-transparent-wrong>button {
+    color: rgb(150, 0, 0);
+    background-color: #dddddd;
+    border: 0;
+    margin-left: 70%;
+    width: 30%;
+    min-width: 100px;
+}
+
 
 .nav-pills>li>a {
     color: #ddd;

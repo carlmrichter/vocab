@@ -1,10 +1,10 @@
 // selected id from index.php
 var id_global;
+var dir_global;
 // array for receiving file data from server.php
 var arr;
 // correct answer (button)
 var answer;
-
 
 function randomInt(min, max) {
     return Math.floor((Math.random() * (max - min + 1) + min));
@@ -43,6 +43,7 @@ function getNewVocab(direction){
 
     // update correct answer
     answer = random_item[0];
+    dir_global = direction;
 
     // fill left box
     var leftContent = arr.content[random[0]][(direction ? 0 : 1)].split(', ', 2);
@@ -102,14 +103,31 @@ function navClick(elem, event) {
     }
 }
 
+function nextVocab (answer) {
+    var wrapper = $('#right-box-wrapper');
+    wrapper.animate({opacity: 0}, 150, function () {
+       getNewVocab(dir_global);
+
+    });
+}
+
 function answerChosen(button) {
-    //$('#right-box-wrapper').animate({left: "+=50px", opacity: 0}, 300);
+    var wrapper = $('#right-box-wrapper');
     if (button.id === 'btn-' + answer) {
-        document.getElementById('left-box').classList.remove('jumbotron-transparent-wrong');
-        document.getElementById('left-box').classList.add('jumbotron-transparent-correct');
+
+        wrapper.animate({opacity: 0}, 150, function () {
+            wrapper.html('<div class="jumbotron jumbotron-transparent-correct"><h1>Richtig!</h1><h2>'+
+                button.innerHTML +'</h2><button type="button" class="btn btn-default" onclick="nextVocab();">Weiter</button></div>');
+            wrapper.animate({opacity: 1}, 150);
+        });
+
     }
     else {
-        document.getElementById('left-box').classList.remove('jumbotron-transparent-correct');
-        document.getElementById('left-box').classList.add('jumbotron-transparent-wrong');
+        var correct = document.getElementById('btn-' + answer).innerHTML;
+        wrapper.animate({opacity: 0}, 150, function () {
+            wrapper.html('<div class="jumbotron jumbotron-transparent-wrong"><h1>Falsch!</h1><p><s>'+
+                button.innerHTML +'</s><p>'+ correct +'</p></p><button id="button-next" type="button" class="btn btn-default btn-block btn-lg" onclick="nextVocab();">Weiter</button></div>');
+            wrapper.animate({opacity: 1}, 150);
+        });
     }
 }

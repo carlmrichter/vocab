@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,6 @@
     <!-- own css -->
     <link rel="stylesheet" href="css/index.css">
 </head>
-
 <body>
 <!--NAVBAR -->
 <div class="navbar navbar-inverse navbar-fixed-top" id="navBar">
@@ -32,19 +33,7 @@
     </div>
 </div>
 
-<div class="bg-image">
-    <div class="bg-overlay">
-        <div class="container" style="padding-top: 70px">
-            <div class="row">
-                <div class="col-xs-12 col-sm-9 col-md-6">
-                    <div id="training-list" class="list-group">
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- jQuery JavaScript -->
@@ -52,6 +41,7 @@
 <!-- bootstrap JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- own JavaScript -->
-<script src="js/index.js"></script>
+<script src="js/stats.js"></script>
 </body>
 </html>
+
