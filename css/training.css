@@ -2,10 +2,10 @@
     color: #ddd;
     background-color: rgba(20,20,20,0.9);
     /*height: 21.5rem;*/
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease;
+    -webkit-transition: all 200ms ease !important;
+    -moz-transition: all 200ms ease !important;
+    -o-transition: all 200ms ease !important;
+    transition: all 200ms ease !important;
 }
 
 .jumbotron-transparent-correct {
@@ -36,6 +36,27 @@
     width: 30%;
 }
 
+.jumbotron-info {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+    .jumbotron-info {
+        padding: 3rem;
+    }
+}
+@media (min-width: 768px) {
+    .jumbotron-info {
+        padding: 5rem;
+    }
+}
+.jumbotron-info>.page-header {
+    margin-top: 0;
+}
+
+small.pull-right {
+    padding-top: 1rem;
+}
 
 .nav-pills>li>a {
     color: #ddd;
@@ -67,11 +88,14 @@
 }
 
 
-/*---------------- pre-animation settings ----------- */
+
+
+
+/*---------------- pre-animation settings -----------
 #left-box, #right-box, #language-bar {
     opacity: 0.0;
 }
-
+*/
 
 
 

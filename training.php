@@ -30,40 +30,37 @@ if (isset($_GET['id'])) {
         </div>
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="nav navbar-nav">
+                <li><a class="nav-link" href=".">Lektionen</a></li>
                 <li><a class="nav-link" href="stats.php">Statistik</a></li>
-                <li><a class="nav-link" href="#">Einstellungen</a></li>
+                <li><a class="nav-link" href="settings.php">Einstellungen</a></li>
             </ul>
         </div>
     </div>
 </div>
 
-<div class="bg-image">
-    <div class="bg-overlay">
-        <div class="container" style="padding-top: 70px">
-            <ul id="language-bar" class="nav nav-pills">
-                <li id="language-1" role="presentation" class="active" onclick="navClick(this, event);"><a href=""></a></li>
-                <li id="language-2" role="presentation" onclick="navClick(this, event);"><a href=""></a></li>
-            </ul>
-            <br>
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <div id="left-box" class="jumbotron jumbotron-transparent-dark">
-                        <h1 id="left-box-h1"></h1>
-                        <p id="left-box-p"></p>
-                    </div>
-                </div>
-                <div id="right-box-wrapper" class="col-md-6 col-xs-12">
-                    <div id="right-box" class="list-group">
-                        <button id="btn-0" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
-                        <button id="btn-1" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
-                        <button id="btn-2" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
-                        <button id="btn-3" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
-                        <button id="btn-4" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
-                    </div>
-                </div>
-
+<div class="container" style="padding-top: 70px">
+    <ul id="language-bar" class="nav nav-pills">
+        <li id="language-1" role="presentation" class="active" onclick="navClick(this, event);"><a href=""></a></li>
+        <li id="language-2" role="presentation" onclick="navClick(this, event);"><a href=""></a></li>
+    </ul>
+    <br>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div id="left-box" class="jumbotron jumbotron-transparent-dark">
+                <h1 id="left-box-h1"></h1>
+                <p id="left-box-p"></p>
             </div>
         </div>
+        <div id="right-box-wrapper" class="col-md-6 col-xs-12">
+            <div id="right-box" class="list-group">
+                <button id="btn-0" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
+                <button id="btn-1" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
+                <button id="btn-2" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
+                <button id="btn-3" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
+                <button id="btn-4" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
+            </div>
+        </div>
+
     </div>
 </div>
 

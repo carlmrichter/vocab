@@ -27,25 +27,40 @@
         </div>
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="nav navbar-nav">
+                <li><a class="nav-link" href=".">Lektionen</a></li>
                 <li class="active"><a class="nav-link" href="stats.php">Statistik</a></li>
-                <li><a class="nav-link" href="#">Einstellungen</a></li>
+                <li><a class="nav-link" href="settings.php">Einstellungen</a></li>
             </ul>
         </div>
     </div>
 </div>
 
-<div class="bg-image">
-    <div class="bg-overlay">
-        <div class="container" style="padding-top: 70px">
-            <div class="jumbotron jumbotron-transparent-dark">
-                <h1>Statistik</h1>
+<div class="container" style="padding-top: 60px">
+
+    <div id="stats-wrapper" class="row">
+        <!--<div class="col-md-12" style="padding: 1rem">
+            <div class="jumbotron jumbotron-transparent-dark" style="margin: 0;">
+                <h1>Alle Lektionen</h1>
+                <div class="progress" style="background-color: transparent; height: 3rem">
+                    <div id="correct-0" class="progress-bar progress-bar-success" style="width: 0"></div>
+                    <div id="wrong-0" class="progress-bar progress-bar-danger" style="width: 0"></div>
+                </div>
+                <p>Gesamt: 50 | Richtig: 32 | Falsch: 18</p>
             </div>
-        </div>
+        </div>-->
+        <!--<div class="col-lg-4 col-sm-6 col-xs-12" style="padding: 1rem">
+            <div class="jumbotron jumbotron-transparent-dark" style="margin: 0;">
+                <h2>test.txt</h2>
+                <div class="progress" style="background-color: transparent">
+                    <div id="correct-0" class="progress-bar progress-bar-success" style="width: 0"></div>
+                    <div id="wrong-0" class="progress-bar progress-bar-danger" style="width: 0"></div>
+                </div>
+                Gesamt: 50 | Richtig: 32 | Falsch: 18
+            </div>
+        </div>-->
+
     </div>
 </div>
-
-
-
 
 <!-- jQuery JavaScript -->
 <script src="js/jquery.min.js"></script>

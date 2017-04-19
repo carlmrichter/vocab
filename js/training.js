@@ -73,20 +73,14 @@ function ready(id) {
             // fill language bar with language 1 + 2
             document.getElementById('language-1').innerHTML = '<a href="">'+ arr.lang1 + ' - ' + arr.lang2 +'</a>';
             document.getElementById('language-2').innerHTML = '<a href="">'+ arr.lang2 + ' - ' + arr.lang1 +'</a>';
-
             getNewVocab(true);
         }
     });
 
-
-    var lb = $('#left-box');
-    var rb = $('#right-box');
-    // set left box to same height as left box
-    //lb.outerHeight(rb.innerHeight());
     // fade in elements
-    lb.animate({opacity: '1.0'}, 200);
-    rb.animate({opacity: '1.0'}, 400);
-    $('#language-bar').animate({opacity: '1.0'},100);
+    //$('#language-bar').animate({opacity: '1.0'},100);
+    //$('#left-box').animate({opacity: '1.0'}, 100);
+    //$('#right-box').animate({opacity: '1.0'}, 100);
 }
 
 function navClick(elem, event) {
@@ -104,7 +98,7 @@ function navClick(elem, event) {
     }
 }
 
-function nextVocab (answer) {
+function nextVocab () {
     var wrapper = document.getElementById('right-box-wrapper');
     var html = '<div id="right-box" class="list-group">';
     for (var i=0; i<5; i++) {
@@ -120,10 +114,10 @@ function answerChosen(button) {
     var wrapper = $('#right-box-wrapper');
     if (button.id === 'btn-' + answer) {
 
-        wrapper.animate({opacity: 0}, 150, function () {
+        wrapper.animate({opacity: 0}, 100, function () {
             wrapper.html('<div class="jumbotron jumbotron-transparent-correct"><h1>Richtig!</h1><p>'+
                 button.innerHTML +'</p><button type="button" class="btn btn-default btn-lg" onclick="nextVocab();">Weiter</button></div>');
-            wrapper.animate({opacity: 1}, 150);
+            wrapper.animate({opacity: 1}, 100);
         });
 
         $.ajax({
@@ -137,10 +131,10 @@ function answerChosen(button) {
     }
     else {
         var correct = document.getElementById('btn-' + answer).innerHTML;
-        wrapper.animate({opacity: 0}, 150, function () {
+        wrapper.animate({opacity: 0}, 100, function () {
             wrapper.html('<div class="jumbotron jumbotron-transparent-wrong"><h1>Falsch!</h1><p><s>'+
                 button.innerHTML +'</s><p>'+ correct +'</p></p><button id="button-next" type="button" class="btn btn-default btn-block btn-lg" onclick="nextVocab();">Weiter</button></div>');
-            wrapper.animate({opacity: 1}, 150);
+            wrapper.animate({opacity: 1}, 100);
         });
 
         $.ajax({

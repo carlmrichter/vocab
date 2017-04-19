@@ -1,5 +1,5 @@
 <?php
-function getFileContent($id) {
+function getFileContent($id, $only_first_line) {
     $directory = 'training/';
     $files = scandir($directory);
 
@@ -9,10 +9,17 @@ function getFileContent($id) {
     // get both language names out of first line of file
     $languages = explode(' - ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
 
+    if ($only_first_line) {
+        fclose($file);
+        return $languages;
+    }
+
     // build return array
     $return = array();
     $return['lang1'] = $languages[0];
     $return['lang2'] = $languages[1];
+
+
     $return['content'] = array();
     for($i = 0, $count = 0; !feof($file); $i++, $count++) {
         $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
@@ -34,23 +41,32 @@ if (isset($_POST['mode'])) {
     switch ($_POST['mode']) {
         case 'id':
             if (isset($_POST['id'])) {
-                echo getFileContent($_POST['id']);
+                echo getFileContent($_POST['id'], false);
             }
             break;
         case 'stat':
+            $id = $_POST['id'];
             $filenames = scandir('training/');
-            $stats = 'stats/stats.json';
-            $filename = $filenames[$_POST['id'] + 2];
+            $stats = 'stats.json';
+            $filename = $filenames[$id + 2];
 
             $content = json_decode(file_get_contents($stats));
-            $content->$filename->answered++;
-            if ($_POST['answer']) $content->$filename->correct++;
+            $content->$id->filename = $filename;
+            if (!isset($content->$id->lang1) && !isset($content->$id->lang2)) {
+                $lang = getFileContent($id, true);
+                $content->$id->lang1 = $lang[0];
+                $content->$id->lang2 = $lang[1];
+            }
+            $content->$id->answered++;
+            if ($_POST['answer']) $content->$id->correct++;
             $file = fopen($stats, 'w');
             fwrite($file, json_encode($content));
             fclose($file);
             //echo print_r($content);
             break;
-
+        case 'get_stats':
+            echo file_get_contents('stats.json');
+            break;
         case 'list':
             $directory = 'training/';
             // filenames of directory
