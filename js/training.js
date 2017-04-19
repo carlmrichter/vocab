@@ -41,6 +41,7 @@ function getNewVocab(direction){
     //alert(random);
     //alert(random_item);
 
+
     // update correct answer
     answer = random_item[0];
     dir_global = direction;
@@ -66,7 +67,7 @@ function ready(id) {
     $.ajax({
         type: 'POST',
         url: 'server.php',
-        data: { id: id_global },
+        data: { mode:'id', id: id_global },
         success: function (json) {
             arr = $.parseJSON(json);
             // fill language bar with language 1 + 2
@@ -104,11 +105,15 @@ function navClick(elem, event) {
 }
 
 function nextVocab (answer) {
-    var wrapper = $('#right-box-wrapper');
-    wrapper.animate({opacity: 0}, 150, function () {
-       getNewVocab(dir_global);
-
-    });
+    var wrapper = document.getElementById('right-box-wrapper');
+    var html = '<div id="right-box" class="list-group">';
+    for (var i=0; i<5; i++) {
+        html += '<button id="btn-'+ i +'" type="button" class="list-group-item" onclick="answerChosen(this);"></button>';
+    }
+    html += '</div>';
+    wrapper.innerHTML = html;
+    getNewVocab(dir_global);
+    $('#right-box').animate({opacity: 1}, 150);
 }
 
 function answerChosen(button) {
@@ -116,11 +121,19 @@ function answerChosen(button) {
     if (button.id === 'btn-' + answer) {
 
         wrapper.animate({opacity: 0}, 150, function () {
-            wrapper.html('<div class="jumbotron jumbotron-transparent-correct"><h1>Richtig!</h1><h2>'+
-                button.innerHTML +'</h2><button type="button" class="btn btn-default" onclick="nextVocab();">Weiter</button></div>');
+            wrapper.html('<div class="jumbotron jumbotron-transparent-correct"><h1>Richtig!</h1><p>'+
+                button.innerHTML +'</p><button type="button" class="btn btn-default btn-lg" onclick="nextVocab();">Weiter</button></div>');
             wrapper.animate({opacity: 1}, 150);
         });
 
+        $.ajax({
+            url: 'server.php',
+            type: 'POST',
+            data: { mode: 'stat', id: id_global, answer: 1 },
+            success: function (ret) {
+               // alert(ret);
+            }
+        });
     }
     else {
         var correct = document.getElementById('btn-' + answer).innerHTML;
@@ -128,6 +141,15 @@ function answerChosen(button) {
             wrapper.html('<div class="jumbotron jumbotron-transparent-wrong"><h1>Falsch!</h1><p><s>'+
                 button.innerHTML +'</s><p>'+ correct +'</p></p><button id="button-next" type="button" class="btn btn-default btn-block btn-lg" onclick="nextVocab();">Weiter</button></div>');
             wrapper.animate({opacity: 1}, 150);
+        });
+
+        $.ajax({
+            url: 'server.php',
+            type: 'POST',
+            data: { mode: 'stat', id: id_global, answer: 0 },
+            success: function (ret) {
+               // alert(ret);
+            }
         });
     }
 }

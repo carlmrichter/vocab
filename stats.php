@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- own css -->
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/training.css">
 </head>
 <body>
 <!--NAVBAR -->
@@ -26,9 +27,19 @@
         </div>
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="nav navbar-nav">
-                <li><a class="nav-link" href="#">Statistik</a></li>
+                <li class="active"><a class="nav-link" href="stats.php">Statistik</a></li>
                 <li><a class="nav-link" href="#">Einstellungen</a></li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<div class="bg-image">
+    <div class="bg-overlay">
+        <div class="container" style="padding-top: 70px">
+            <div class="jumbotron jumbotron-transparent-dark">
+                <h1>Statistik</h1>
+            </div>
         </div>
     </div>
 </div>

@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
         </div>
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="nav navbar-nav">
-                <li><a class="nav-link" href="#">Statistik</a></li>
+                <li><a class="nav-link" href="stats.php">Statistik</a></li>
                 <li><a class="nav-link" href="#">Einstellungen</a></li>
             </ul>
         </div>

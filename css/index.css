@@ -31,6 +31,11 @@ body {
 
 .list-item-custom-1 {
     background-color: rgba(255,255,255,0.5);
+    border: 0;
+}
+
+.list-text {
+    color: #333;
 }
 
 .vertical-align {

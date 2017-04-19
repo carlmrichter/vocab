@@ -26,7 +26,14 @@
     border: 0;
     margin-left: 70%;
     width: 30%;
-    min-width: 100px;
+}
+
+.jumbotron-transparent-correct>button {
+    color: rgb(0, 150, 0);
+    background-color: #dddddd;
+    border: 0;
+    margin-left: 70%;
+    width: 30%;
 }
 
 
