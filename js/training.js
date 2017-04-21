@@ -71,8 +71,8 @@ function ready(id) {
         success: function (json) {
             arr = $.parseJSON(json);
             // fill language bar with language 1 + 2
-            document.getElementById('language-1').innerHTML = '<a href="">'+ arr.lang1 + ' - ' + arr.lang2 +'</a>';
-            document.getElementById('language-2').innerHTML = '<a href="">'+ arr.lang2 + ' - ' + arr.lang1 +'</a>';
+            document.getElementById('language-1').innerHTML = arr.lang1 + ' - ' + arr.lang2;
+            document.getElementById('language-2').innerHTML = arr.lang2 + ' - ' + arr.lang1;
             getNewVocab(true);
         }
     });
@@ -100,7 +100,7 @@ function navClick(elem, event) {
 
 function nextVocab () {
     var wrapper = document.getElementById('right-box-wrapper');
-    var html = '<div id="right-box" class="list-group">';
+    var html = '<div id="right-box" class="list-group list-transparent">';
     for (var i=0; i<5; i++) {
         html += '<button id="btn-'+ i +'" type="button" class="list-group-item" onclick="answerChosen(this);"></button>';
     }
@@ -116,7 +116,7 @@ function answerChosen(button) {
 
         wrapper.animate({opacity: 0}, 100, function () {
             wrapper.html('<div class="jumbotron jumbotron-transparent-correct"><h1>Richtig!</h1><p>'+
-                button.innerHTML +'</p><button type="button" class="btn btn-default btn-lg" onclick="nextVocab();">Weiter</button></div>');
+                button.innerHTML +'</p><button type="button" class="btn btn-default" onclick="nextVocab();">Weiter</button></div>');
             wrapper.animate({opacity: 1}, 100);
         });
 
@@ -133,7 +133,7 @@ function answerChosen(button) {
         var correct = document.getElementById('btn-' + answer).innerHTML;
         wrapper.animate({opacity: 0}, 100, function () {
             wrapper.html('<div class="jumbotron jumbotron-transparent-wrong"><h1>Falsch!</h1><p><s>'+
-                button.innerHTML +'</s><p>'+ correct +'</p></p><button id="button-next" type="button" class="btn btn-default btn-block btn-lg" onclick="nextVocab();">Weiter</button></div>');
+                button.innerHTML +'</s><p>'+ correct +'</p></p><button id="button-next" type="button" class="btn btn-default" onclick="nextVocab();">Weiter</button></div>');
             wrapper.animate({opacity: 1}, 100);
         });
 

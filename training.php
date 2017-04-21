@@ -14,45 +14,50 @@ if (isset($_GET['id'])) {
     <!-- material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/training.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-<!--NAVBAR -->
-<div class="navbar navbar-inverse navbar-fixed-top" id="navBar">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="index.php" class="navbar-brand">VocabCoach</a>
-            <button id="buttonNavBarToggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
-                <i class="material-icons" style="color: white;vertical-align: middle">menu</i>
-            </button>
-        </div>
+
+<div id="navbar-wrapper" class="container">
+    <nav class="navbar navbar-toggleable-sm navbar-inverse">
+
+        <button id="menu-toggler" class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
+                data-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="material-icons">menu</i>
+        </button>
+        <a href="." class="navbar-brand">VocabTrainer</a>
+
         <div class="collapse navbar-collapse" id="mainNavBar">
-            <ul class="nav navbar-nav">
-                <li><a class="nav-link" href=".">Lektionen</a></li>
-                <li><a class="nav-link" href="stats.php">Statistik</a></li>
-                <li><a class="nav-link" href="settings.php">Einstellungen</a></li>
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href=".">Lektionen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="stats.php">Statistik</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="settings.php">Einstellungen</a>
+                </li>
             </ul>
         </div>
-    </div>
+    </nav>
 </div>
 
-<div class="container" style="padding-top: 70px">
-    <ul id="language-bar" class="nav nav-pills">
-        <li id="language-1" role="presentation" class="active" onclick="navClick(this, event);"><a href=""></a></li>
-        <li id="language-2" role="presentation" onclick="navClick(this, event);"><a href=""></a></li>
-    </ul>
-    <br>
+<div id="content-wrapper" class="container">
+    <div id="language-nav"><a id="language-1" onclick="navClick(this, event);" class="btn btn-nav active"></a><a id="language-2" onclick="navClick(this, event);" class="btn btn-nav"></a></div>
+
     <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <div id="left-box" class="jumbotron jumbotron-transparent-dark">
+        <div id="left-box-wrapper" class="col-md-6 col-sm-12">
+            <div id="left-box" class="jumbotron jumbotron-transparent">
                 <h1 id="left-box-h1"></h1>
                 <p id="left-box-p"></p>
             </div>
         </div>
-        <div id="right-box-wrapper" class="col-md-6 col-xs-12">
-            <div id="right-box" class="list-group">
+        <div id="right-box-wrapper" class="col-md-6 col-sm-12">
+            <div id="right-box" class="list-group list-transparent">
                 <button id="btn-0" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
                 <button id="btn-1" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
                 <button id="btn-2" type="button" class="list-group-item" onclick="answerChosen(this);"></button>
@@ -63,6 +68,8 @@ if (isset($_GET['id'])) {
 
     </div>
 </div>
+
+
 
 <!-- jQuery JavaScript -->
 <script src="js/jquery.min.js"></script>
