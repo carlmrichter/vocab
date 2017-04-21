@@ -205,7 +205,7 @@ button, a.btn {
 
 .jumbotron-transparent {
     color: #333333;
-    background-color: rgba(240,225,225,0.7);
+    background-color: rgba(240,225,225,0.75);
     margin-bottom: 0;
     -webkit-transition: all 250ms ease;
     -moz-transition: all 250ms ease;
@@ -289,6 +289,22 @@ button, a.btn {
 
 }
 
-.jumbotron-margin {
-    margin-bottom: .5rem;
+.box-wrapper {
+    padding: 0 .25rem .5rem .25rem;
+}
+
+.box-wrapper>.jumbotron {
+    height: 100%;
+}
+
+.btn-primary {
+    background-color: #dddddd;
+    color: #333333;
+    border:0;
+    margin: 0 .5rem .5rem 0;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #333333;
+    color: #dddddd;
 }

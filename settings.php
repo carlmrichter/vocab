@@ -1,11 +1,11 @@
 <?php ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>VocabCoach</title>
+    <title>VocabTrainer - Einstellungen</title>
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <!-- material icons -->
@@ -45,32 +45,41 @@
 
 
 <div id="content-wrapper" class="container">
-    <div class="jumbotron jumbotron-transparent jumbotron-margin">
-        <h1 class="display-4">Lektion hinzufügen</h1>
-        <p class="lead">Lektionen online erstellen oder hochladen</p>
-        <hr class="my-2">
-        <p>Hier können Lektionen im <code>.txt</code>-Format hochgeladen werden.</p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
-    </div>
-    <div class="jumbotron jumbotron-transparent jumbotron-margin">
-        <h1 class="display-4">Verwaltung</h1>
-        <p class="lead">bestehende Lektionen löschen oder bearbeiten</p>
-        <hr class="my-2">
-        <p></p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
-    </div>
-    <div class="jumbotron jumbotron-transparent jumbotron-margin">
-        <h1 class="display-4">Sprache / Language</h1>
-        <p class="lead">You don't speak German? No worries.</p>
-        <hr class="my-2">
-        <p></p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
+    <div class="row">
+        <div class="col-lg-12 col-xl-6 box-wrapper">
+            <div class="jumbotron jumbotron-transparent">
+                <h1 class="display-4">Language</h1>
+                <p class="lead">Don't speak german? No worries.</p>
+                <hr class="my-2">
+                <p></p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Change Language</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xl-6 box-wrapper">
+            <div class="jumbotron jumbotron-transparent">
+                <h1 class="display-4">Lektion hinzufügen</h1>
+                <p class="lead">Lektionen online erstellen oder hochladen</p>
+                <hr class="my-2">
+                <p></p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Lektion erstellen</a><a class="btn btn-primary btn-lg" href="#" role="button">Datei hochladen</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-12 box-wrapper">
+            <div class="jumbotron jumbotron-transparent">
+                <h1 class="display-4">Lektion bearbeiten</h1>
+                <p class="lead">bestehende Lektionen löschen oder bearbeiten</p>
+                <hr class="my-2">
+                <p></p>
+                <p class="lead">
+
+                </p>
+            </div>
+        </div>
+
     </div>
 </div>
 
