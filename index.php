@@ -28,13 +28,13 @@
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li id="nav-list" class="nav-item active">
                     <a class="nav-link" href=".">Lektionen</a>
                 </li>
-                <li class="nav-item">
+                <li id="nav-stats" class="nav-item">
                     <a class="nav-link" href="stats.php">Statistik</a>
                 </li>
-                <li class="nav-item">
+                <li id="nav-settings" class="nav-item">
                     <a class="nav-link" href="settings.php">Einstellungen</a>
                 </li>
             </ul>

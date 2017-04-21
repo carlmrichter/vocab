@@ -22,4 +22,16 @@ function loadEntries() {
 
 $(document).ready(function () {
     loadEntries();
+
+    /*var settings_in = '<i id="icon_settings" class="material-icons">settings</i>';
+    $('#nav-settings').hover(
+        function () {
+            $(settings_in).hide().appendTo(this).fadeIn(500);
+        },
+        function () {
+            $('#icon_settings').fadeOut.remove();
+        }
+    );*/
+
+
 });
