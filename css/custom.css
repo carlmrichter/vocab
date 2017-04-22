@@ -215,12 +215,12 @@ button, a.btn {
 
 .jumbotron-transparent-correct {
     color: #ddd;
-    background-color: #2E7D32CC;
+    background-color: rgba(46, 125, 50, 0.8);
 }
 
 .jumbotron-transparent-wrong {
     color: #ddd;
-    background-color: #B71C1CCC;
+    background-color: rgba(183, 28, 28, 0.8);
 }
 
 
