@@ -1,6 +1,7 @@
 # vocabTrainer -  a vocabulary training website
 
 ### Features
+- fully responsive design
 - AJAX-loaded contents
 - serverside stored training lessons as .txt for any connecting IP
   - list of training lessons
