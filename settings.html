@@ -1,13 +1,13 @@
-<?php ?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="author" content="Carl Richter">
     <title>VocabTrainer - Einstellungen</title>
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- own css -->
@@ -16,7 +16,7 @@
 
 <body>
 <!--NAVBAR -->
-<div id="navbar-wrapper" class="container">
+<div class="container navbar-wrapper">
     <nav class="navbar navbar-toggleable-sm navbar-inverse">
 
         <button id="menu-toggler" class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
@@ -33,10 +33,10 @@
                     <a class="nav-link" href=".">Lektionen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stats.php">Statistik</a>
+                    <a class="nav-link" href="stats.html">Statistik</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="settings.php">Einstellungen</a>
+                    <a class="nav-link" href="settings.html">Einstellungen</a>
                 </li>
             </ul>
         </div>
@@ -44,27 +44,27 @@
 </div>
 
 
-<div id="content-wrapper" class="container">
+<div class="container content-wrapper">
     <div class="row">
-        <div class="col-lg-12 col-xl-6 box-wrapper">
+        <div class="col-sm-12 col-lg-5 col-xl-5 box-wrapper">
             <div class="jumbotron jumbotron-transparent">
                 <h1 class="display-4">Language</h1>
                 <p class="lead">Don't speak german? No worries.</p>
                 <hr class="my-2">
                 <p></p>
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Change Language</a>
+                    <button class="btn btn-primary btn-lg">Change language</button>
                 </p>
             </div>
         </div>
-        <div class="col-lg-12 col-xl-6 box-wrapper">
+        <div class="col-sm-12 col-lg-7 col-xl-7 box-wrapper">
             <div class="jumbotron jumbotron-transparent">
                 <h1 class="display-4">Lektion hinzufügen</h1>
                 <p class="lead">Lektionen online erstellen oder hochladen</p>
                 <hr class="my-2">
                 <p></p>
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Lektion erstellen</a><a class="btn btn-primary btn-lg" href="#" role="button">Datei hochladen</a>
+                    <button class="btn btn-primary btn-lg margin">Lektion erstellen</button><button class="btn btn-primary btn-lg margin" data-toggle="modal" data-target="#upload-modal">Datei hochladen</button>
                 </p>
             </div>
         </div>
@@ -79,15 +79,43 @@
                 </p>
             </div>
         </div>
+    </div>
+</div>
 
+<!-- upload modal -->
+<div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form onsubmit="uploadFile(event);">
+                <div class="modal-header">
+                    <h5 class="modal-title">Datei hochladen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="upload-body" class="modal-body">
+                    <div class="form-group">
+                        <input id="userfile" type="file" class="form-control-file"/>
+                        <small class="form-text text-muted">
+                            Lektionsdateien müssen im <code>.txt</code>-Format hochgeladen werden. Dateien mit HTML- bzw. PHP-Tags im Namen sind nicht erlaubt.
+                        </small>
+                    </div>
+                    <div id="feedback" class="alert" role="alert"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                    <button id="button-upload" type="submit" class="btn btn-primary">Hochladen</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 
 <!-- jQuery JavaScript -->
-<script src="js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- bootstrap JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <!-- own JavaScript -->
 <script src="js/settings.js"></script>
 </body>

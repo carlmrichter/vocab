@@ -7,7 +7,7 @@ function getFileContent($id, $only_first_line) {
     $file = fopen($directory.$files[$id + 2], 'r');
 
     // get both language names out of first line of file
-    $languages = explode(' - ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
+    $languages = explode(' - ', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
 
     if ($only_first_line) {
         fclose($file);
@@ -22,7 +22,7 @@ function getFileContent($id, $only_first_line) {
 
     $return['content'] = array();
     for($i = 0, $count = 0; !feof($file); $i++, $count++) {
-        $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
+        $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
         if($line[0] == '\n' || $line[0] == ''){
             $count--;
             continue;
@@ -47,10 +47,12 @@ if (isset($_POST['mode'])) {
         case 'stat':
             $id = $_POST['id'];
             $filenames = scandir('training/');
-            $stats = 'stats.json';
+            $stats = 'stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
+            //$stats = 'stats/stats.json';
+            $exist = file_exists($stats);
             $filename = $filenames[$id + 2];
-
             $content = json_decode(file_get_contents($stats));
+            if (!$exist) chmod($stats, 0777);
             $content->$id->filename = $filename;
             if (!isset($content->$id->lang1) && !isset($content->$id->lang2)) {
                 $lang = getFileContent($id, true);
@@ -65,7 +67,8 @@ if (isset($_POST['mode'])) {
             //echo print_r($content);
             break;
         case 'get_stats':
-            echo file_get_contents('stats.json');
+            echo file_get_contents('stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json');
+            //echo file_get_contents('stats/stats.json');
             break;
         case 'list':
             $directory = 'training/';
@@ -78,7 +81,7 @@ if (isset($_POST['mode'])) {
                 $line_cnt = 0;
                 $file = fopen($directory . $files[$i], 'r');
                 // get languages from first line of .txt
-                $lang = fgets($file);
+                $lang = fgetss($file);
                 $lang = trim(preg_replace('/\s+/', ' ', $lang));
                 // count lines
                 for ($line_cnt = 0; !feof($file); $line_cnt++) {

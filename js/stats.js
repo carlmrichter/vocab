@@ -17,7 +17,7 @@ $(document).ready(function () {
             } catch (err) {
 
                 document.getElementById('stats-wrapper').innerHTML = '<div class="col-md-12" style="padding: .7rem">' +
-                    '<div class="jumbotron jumbotron-transparent-dark"><h1>Du hast noch nichts geübt!</h1></div></div>';
+                    '<div class="jumbotron jumbotron-transparent"><h1>Du hast noch nichts geübt!</h1></div></div>';
                 return;
             }
 
@@ -33,11 +33,14 @@ $(document).ready(function () {
                     total_correct += correct;
                     count++;
                     bars[count] = [answered, correct];
+
+                    // TODO: delete stats button/icon for each box
+
                     html += '<div class="col-xl-4 col-md-6 col-sm-12 small-box-wrapper">' +
                         '<div class="jumbotron jumbotron-transparent">' +
                         '<h2>'+ filename +'</h2>'+ obj['lang1'] + ' - '+ obj['lang2'] +'<div class="progress progress-custom-small">' +
-                        '<div id="correct-'+ count +'" class="progress-bar bg-success" style="width: 0; height: auto"></div>' +
-                        '<div id="wrong-'+ count +'" class="progress-bar bg-danger" style="width: 0; height: auto"></div>' +
+                        '<div id="correct-'+ count +'" class="progress-bar bg-success" style="width:0;height:auto;"></div>' +
+                        '<div id="wrong-'+ count +'" class="progress-bar bg-danger" style="width:0;height:auto;"></div>' +
                         '</div>Gesamt: '+ answered +' | Richtig: '+ correct +' | Falsch: '+ wrong +' </div></div>';
                 }
 
@@ -47,8 +50,8 @@ $(document).ready(function () {
             var html_total = '<div class="col-12 big-box-wrapper">' +
                 '<div class="jumbotron jumbotron-transparent">' +
                 '<h1>Alle Lektionen</h1><div class="progress progress-custom-big">' +
-                '<div id="correct-0" class="progress-bar bg-success" style="width: 0; height: auto"></div>' +
-                '<div id="wrong-0" class="progress-bar bg-danger" style="width: 0; height: auto"></div></div>' +
+                '<div id="correct-0" class="progress-bar bg-success" style="width:0; height: auto;"></div>' +
+                '<div id="wrong-0" class="progress-bar bg-danger" style="width:0; height: auto;"></div></div>' +
                 '<p>Gesamt: '+ total_answered +' | Richtig: '+ total_correct +' | Falsch: '+ (total_answered-total_correct) +'</p></div></div>';
             document.getElementById('stats-wrapper').innerHTML = html_total + html;
             animateProgressBars();
@@ -73,8 +76,9 @@ function animateProgressBars() {
         // activate tooltips
         w.attr({dataToggle: 'tooltip'}).tooltip({delay: 100, title: wrong, placement: 'bottom'});
         c.attr({dataToggle: 'tooltip'}).tooltip({delay: 100, title: correct, placement: 'bottom'});
-        w.animate({width: wrong}, {duration: 200}, 'linear');
-        c.animate({width: correct}, {duration: 200}, 'linear');
+        w.animate({width: wrong}, 200);
+        c.animate({width: correct},200);
+
     }
 
 }

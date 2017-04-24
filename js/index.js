@@ -11,6 +11,10 @@ function loadEntries() {
         success: function (json) {
             //alert(json);
             var arr = $.parseJSON(json);
+            if (arr.length === 0) {
+                document.getElementById('content-wrapper').innerHTML = '<div class="jumbotron jumbotron-transparent">' +
+                    '<h1>Keine Lektionen vorhanden</h1><p>Du kannst neue Lektionen in den Einstellungen hinzufügen.</p></div>';
+            }
             for(var i=0; i < arr.length; i++){
                 newhtml += '<button type="button" id="'+i+'" onclick="listItemClicked(this)" class="list-group-item list-group-item-action"><span class="float-left">'+ arr[i].name +'</span><span class="float-right vertical-align"><span class="badge badge-pill badge-default">'+arr[i].line_cnt+'</span><i class="material-icons">chevron_right</i></span></button>';
             }
@@ -22,16 +26,11 @@ function loadEntries() {
 
 $(document).ready(function () {
     loadEntries();
-
-    /*var settings_in = '<i id="icon_settings" class="material-icons">settings</i>';
-    $('#nav-settings').hover(
-        function () {
-            $(settings_in).hide().appendTo(this).fadeIn(500);
-        },
-        function () {
-            $('#icon_settings').fadeOut.remove();
-        }
-    );*/
-
-
 });
+
+// $('#menu-toggler').click(function () {
+//    if ($(this).hasClass('collapsed'))
+//        $('#mainNavBar').addClass('toggled');
+//    else
+//        $('#mainNavBar').removeClass('toggled');
+// });

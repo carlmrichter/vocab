@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>VocabTrainer</title>
-    <!-- using Bootstrap v4
+
+    <meta name="author" content="Carl Richter">
+    <title>VocabTrainer - Statistik</title>
+    <!-- tether css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- own css -->
     <link rel="stylesheet" href="css/custom.css">
 </head>
-
 <body>
-
-<div id="navbar-wrapper" class="container">
+<!--NAVBAR -->
+<div class="container navbar-wrapper">
     <nav class="navbar navbar-toggleable-sm navbar-inverse">
 
         <button id="menu-toggler" class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
@@ -28,30 +30,33 @@
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                <li id="nav-list" class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href=".">Lektionen</a>
                 </li>
-                <li id="nav-stats" class="nav-item">
-                    <a class="nav-link" href="stats.php">Statistik</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="stats.html">Statistik</a>
                 </li>
-                <li id="nav-settings" class="nav-item">
-                    <a class="nav-link" href="settings.php">Einstellungen</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="settings.html">Einstellungen</a>
                 </li>
             </ul>
         </div>
     </nav>
 </div>
 
-<div id="content-wrapper" class="container">
-    <div id="training-list" class="list-group list-transparent">
+<div class="container content-wrapper">
+    <div id="stats-wrapper" class="row">
     </div>
 </div>
 
 <!-- jQuery JavaScript -->
-<script src="js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- tether JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <!-- bootstrap JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <!-- own JavaScript -->
-<script src="js/index.js"></script>
+<script src="js/stats.js"></script>
 </body>
 </html>
+

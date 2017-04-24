@@ -1,10 +1,24 @@
 // selected id from index.php
 var id_global;
-var dir_global;
+var dir_global = true;
 // array for receiving file data from server.php
 var arr;
 // correct answer (button)
 var answer;
+
+$.fn.animateRotate = function(angle, duration, easing, complete) {
+    var args = $.speed(duration, easing, complete);
+    var step = args.step;
+    return this.each(function(i, e) {
+        args.complete = $.proxy(args.complete, e);
+        args.step = function(now) {
+            $.style(e, 'transform', 'rotate(' + now + 'deg)');
+            if (step) return step.apply(e, arguments);
+        };
+
+        $({deg: 0}).animate({deg: angle}, args);
+    });
+};
 
 function randomInt(min, max) {
     return Math.floor((Math.random() * (max - min + 1) + min));
@@ -62,7 +76,6 @@ function getNewVocab(direction){
 
 function ready(id) {
     id_global = id;
-
     // ajax request for selected training file contents
     $.ajax({
         type: 'POST',
@@ -71,9 +84,9 @@ function ready(id) {
         success: function (json) {
             arr = $.parseJSON(json);
             // fill language bar with language 1 + 2
-            document.getElementById('language-1').innerHTML = arr.lang1 + ' - ' + arr.lang2;
-            document.getElementById('language-2').innerHTML = arr.lang2 + ' - ' + arr.lang1;
-            getNewVocab(true);
+            // document.getElementById('language-1').innerHTML = arr.lang1 + ' - ' + arr.lang2;
+            // document.getElementById('language-2').innerHTML = arr.lang2 + ' - ' + arr.lang1;
+            nextVocab();
         }
     });
 
@@ -83,26 +96,26 @@ function ready(id) {
     //$('#right-box').animate({opacity: '1.0'}, 100);
 }
 
-function navClick(elem, event) {
-    event.preventDefault();
-    if (!elem.classList.contains("active")){
-        elem.classList.toggle("active");
-        if (elem.id === "language-1"){
-            document.getElementById("language-2").classList.toggle("active");
-            getNewVocab(true);
-        }
-        else if (elem.id === "language-2") {
-            document.getElementById("language-1").classList.toggle("active");
-            getNewVocab(false);
-        }
-    }
-}
+// function navClick(elem, event) {
+//     event.preventDefault();
+//     if (!elem.classList.contains("active")){
+//         elem.classList.toggle("active");
+//         if (elem.id === "language-1"){
+//             document.getElementById("language-2").classList.toggle("active");
+//             getNewVocab(true);
+//         }
+//         else if (elem.id === "language-2") {
+//             document.getElementById("language-1").classList.toggle("active");
+//             getNewVocab(false);
+//         }
+//     }
+// }
 
 function nextVocab () {
     var wrapper = document.getElementById('right-box-wrapper');
     var html = '<div id="right-box" class="list-group list-transparent">';
     for (var i=0; i<5; i++) {
-        html += '<button id="btn-'+ i +'" type="button" class="list-group-item" onclick="answerChosen(this);"></button>';
+        html += '<button id="btn-'+ i +'" type="button" class="list-group-item wordwrap" onclick="answerChosen(this);"></button>';
     }
     html += '</div>';
     wrapper.innerHTML = html;
@@ -147,3 +160,9 @@ function answerChosen(button) {
         });
     }
 }
+
+$('#language-swap').click(function () {
+    $(this).toggleClass("swapped");
+    dir_global = !dir_global;
+    getNewVocab(dir_global);
+});
