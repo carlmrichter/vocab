@@ -65,7 +65,7 @@ function ready(id) {
     // ajax request for selected training file contents
     $.ajax({
         type: 'POST',
-        url: 'server.php',
+        url: 'server/server.php',
         data: { mode:'id', id: id_global },
         success: function (json) {
             arr = $.parseJSON(json);
@@ -99,7 +99,7 @@ function answerChosen(button) {
         });
 
         $.ajax({
-            url: 'server.php',
+            url: 'server/server.php',
             type: 'POST',
             data: { mode: 'stat', id: id_global, answer: 1 },
             success: function (ret) {
@@ -116,7 +116,7 @@ function answerChosen(button) {
         });
 
         $.ajax({
-            url: 'server.php',
+            url: 'server/server.php',
             type: 'POST',
             data: { mode: 'stat', id: id_global, answer: 0 },
             success: function (ret) {

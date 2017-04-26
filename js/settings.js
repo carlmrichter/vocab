@@ -41,7 +41,7 @@ function uploadData(event) {
 
     // otherwise send file data to server
     $.ajax({
-        url: 'upload.php',
+        url: 'server/upload.php',
         type: 'POST',
         data: { data: result, name: file.name },
         success: function (json) {

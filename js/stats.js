@@ -3,7 +3,7 @@ var count = 0;
 function initializeUI() {
     count  = 0;
     $.ajax({
-        url: 'server.php',
+        url: 'server/server.php',
         type: 'POST',
         data: { mode: 'get_stats'},
         success: function (json) {
@@ -59,7 +59,7 @@ function initializeUI() {
                 var id = $(this).attr('id');
                 var id_short = parseInt(id.substr(id.length - 1));
                 $.ajax({
-                    url: 'server.php',
+                    url: 'server/server.php',
                     type: 'POST',
                     data: { mode: 'delete_stat', id: id_short},
                     success: function (json) {

@@ -5,7 +5,7 @@ function listItemClicked(src) {
 function loadEntries() {
     var newhtml = '';
     $.ajax({
-        url: 'server.php',
+        url: 'server/server.php',
         type: 'POST',
         data: { mode: 'list'},
         success: function (json) {
