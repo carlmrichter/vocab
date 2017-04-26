@@ -14,6 +14,9 @@ function endsWith($string, $end) {
 $data = $_POST['data'];
 $filename = $_POST['name'];
 $return = array();
+if (!file_exists('training/')) {
+    mkdir('training/');
+}
 $files = scandir('training/');
 
 foreach ($files as $f) {

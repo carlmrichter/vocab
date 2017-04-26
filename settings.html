@@ -24,19 +24,19 @@
                 aria-label="Toggle navigation">
             <i class="material-icons">menu</i>
         </button>
-        <a href="." class="navbar-brand">VocabTrainer</a>
+        <a href="." class="navbar-brand unselectable">VocabTrainer</a>
 
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href=".">Lektionen</a>
+                    <a class="nav-link unselectable" href=".">Lektionen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stats.html">Statistik</a>
+                    <a class="nav-link unselectable" href="stats.html">Statistik</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="settings.html">Einstellungen</a>
+                    <a class="nav-link unselectable" href="settings.html">Einstellungen</a>
                 </li>
             </ul>
         </div>
@@ -64,7 +64,7 @@
                 <hr class="my-2">
                 <p></p>
                 <p class="lead">
-                    <button class="btn btn-primary btn-lg margin">Lektion erstellen</button><button class="btn btn-primary btn-lg margin" data-toggle="modal" data-target="#upload-modal">Datei hochladen</button>
+                    <button class="btn btn-primary btn-lg margin vertical-align"><i class="material-icons" aria-hidden="true" style="padding-right: .5rem">insert_drive_file</i>Lektion erstellen</button><button class="btn btn-primary btn-lg margin vertical-align" data-toggle="modal" data-target="#upload-modal"><i class="material-icons" aria-hidden="true" style="padding-right: .5rem">file_upload</i>Datei hochladen</button>
                 </p>
             </div>
         </div>
@@ -95,16 +95,16 @@
                 </div>
                 <div id="upload-body" class="modal-body">
                     <div class="form-group">
-                        <input id="userfile" type="file" class="form-control-file"/>
+                        <input id="userfile" type="file" class="form-control-file" accept=".txt"/>
                         <small class="form-text text-muted">
-                            Lektionsdateien müssen im <code>.txt</code>-Format hochgeladen werden. Dateien mit HTML- bzw. PHP-Tags im Namen sind nicht erlaubt.
+                            Lektionsdateien müssen im <code>.txt</code>-Format hochgeladen werden und dürfen maximal 100 KB groß sein. Dateien mit HTML- bzw. PHP-Tags im Namen sind nicht erlaubt.
                         </small>
                     </div>
                     <div id="feedback" class="alert" role="alert"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-                    <button id="button-upload" type="submit" class="btn btn-primary">Hochladen</button>
+                    <button id="button-upload" type="submit" class="btn btn-primary vertical-align"><i class="material-icons" aria-hidden="true" style="padding-right: .25rem">file_upload</i>Hochladen</button>
                 </div>
             </form>
         </div>

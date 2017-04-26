@@ -160,6 +160,10 @@ body {
     margin-right: .3rem;
 }
 
+#training-list>button>span.float-right>i {
+    padding-bottom: .05rem;
+}
+
 .vertical-align {
     display: inline-flex;
     align-items: center;
@@ -306,6 +310,13 @@ button, a.btn {
     transition: all 250ms ease;
 }
 
+.small-box-wrapper, .big-box-wrapper {
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
 .big-box-wrapper {
     padding: 0 .25rem .25rem .25rem;
 }
@@ -355,6 +366,7 @@ button, a.btn {
 }
 
 #language-swap {
+    border: 0;
     margin-top: .25rem;
     margin-right: -1.5rem;
     padding: .5rem;
@@ -364,10 +376,10 @@ button, a.btn {
     background-color: transparent;
 
 
-    -webkit-transition: background-color 400ms ease, transform .25s linear;
-    -moz-transition: background-color 400ms ease, transform .25s linear;
-    -o-transition: background-color 400ms ease, transform .25s linear;
-    transition: background-color 400ms ease, transform .25s linear;
+    -webkit-transition: background-color 400ms ease, transform .25s linear, color .25s ease;
+    -moz-transition: background-color 400ms ease, transform .25s linear, color .25s ease;
+    -o-transition: background-color 400ms ease, transform .25s linear, color .25s ease;
+    transition: background-color 400ms ease, transform .25s linear, color .25s ease;
 }
 
 #language-swap.swapped {
@@ -400,12 +412,28 @@ button, a.btn {
     }
 }
 
-#language-swap:hover, #language-swap:focus {
+#language-swap:hover {
     background-color: rgba(225,225,225,0.5);
     -webkit-transition: background-color 400ms ease, transform .25s linear;
     -moz-transition: background-color 400ms ease, transform .25s linear;
     -o-transition: background-color 400ms ease, transform .25s linear;
     transition: background-color 400ms ease, transform .25s linear;
+}
+
+#language-swap:focus {
+    outline: none;
+}
+
+#language-swap.toggle-disabled {
+    color: transparent;
+    -webkit-transition: color .25s ease;
+    -moz-transition: color .25s ease;
+    -o-transition: color .25s ease;
+    transition: color .25s ease;
+}
+
+#language-swap.toggle-disabled:hover {
+    background-color: transparent;
 }
 
 .unselectable {
@@ -416,17 +444,45 @@ button, a.btn {
     user-select: none;
 }
 
-/*
-.wordwrap {
-    word-break: break-all;
-    word-wrap: break-word;
-}
-*/
-
 .modal-body>.form-group>small {
     padding-top: .5rem;
 }
 
 .modal-body>.form-group>small>code {
     color: #333333;
+}
+
+.delete-stats {
+    margin-top: -.4rem;
+    padding: .75rem;
+    border: 0;
+    border-radius: 5rem;
+    cursor: pointer;
+    -webkit-transition: background-color 400ms ease;
+    -moz-transition: background-color 400ms ease;
+    -o-transition: background-color 400ms ease;
+    transition: background-color 400ms ease;
+}
+
+.big-box-wrapper>div>.delete-stats {
+    margin-top: -.1rem;
+}
+
+.delete-stats:hover {
+    background-color: rgba(225,225,225,0.5);
+}
+
+div.progress-bar.bg-success, div.progress-bar.bg-danger {
+    -webkit-transition: background-color .4s ease;
+    -moz-transition: background-color .4s ease;
+    -o-transition: background-color .4s ease;
+    transition: background-color .4s ease;
+}
+
+div.progress-bar.bg-success:hover {
+    background-color: #48b54d !important;
+}
+
+div.progress-bar.bg-danger:hover {
+    background-color: #c94c46 !important;
 }

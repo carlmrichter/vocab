@@ -47,12 +47,15 @@ if (isset($_POST['mode'])) {
         case 'stat':
             $id = $_POST['id'];
             $filenames = scandir('training/');
+            if (!file_exists('stats/')) {
+                mkdir('stats/');
+            }
             $stats = 'stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
             //$stats = 'stats/stats.json';
             $exist = file_exists($stats);
             $filename = $filenames[$id + 2];
             $content = json_decode(file_get_contents($stats));
-            if (!$exist) chmod($stats, 0777);
+            //if (!$exist) chmod($stats, 0777);
             $content->$id->filename = $filename;
             if (!isset($content->$id->lang1) && !isset($content->$id->lang2)) {
                 $lang = getFileContent($id, true);
@@ -101,6 +104,26 @@ if (isset($_POST['mode'])) {
                 $return[$i - 2]['line_cnt'] = $line_cnt;
             }
             // submit answer array in json format
+            echo json_encode($return);
+            break;
+        case 'delete_stat':
+            $id = $_POST['id'];
+            $stats = 'stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
+            $id--;
+            $content = json_decode(file_get_contents($stats));
+            $content_array = (array)$content;
+            $return['ids'] = array();
+            if (count($content_array) < 2 || $id == -1) {
+                unlink($stats);
+                $return['ids'][0] = -1;
+                $return['ids'] = array_merge($return['ids'], array_keys($content_array));
+                echo json_encode($return);
+                return;
+            }
+            unset($content->$id);
+            file_put_contents($stats, json_encode($content));
+            $return['ids'][0] = $id;
+            $return['content'] = $content;
             echo json_encode($return);
             break;
         default:

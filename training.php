@@ -30,19 +30,19 @@ if (isset($_GET['id'])) {
                 aria-label="Toggle navigation">
             <i class="material-icons">menu</i>
         </button>
-        <a href="." class="navbar-brand">VocabTrainer</a>
+        <a href="." class="navbar-brand unselectable">VocabTrainer</a>
 
         <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href=".">Lektionen</a>
+                    <a class="nav-link unselectable" href=".">Lektionen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stats.html">Statistik</a>
+                    <a class="nav-link unselectable" href="stats.html">Statistik</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="settings.html">Einstellungen</a>
+                    <a class="nav-link unselectable" href="settings.html">Einstellungen</a>
                 </li>
             </ul>
         </div>
@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
     <div class="row">
         <div id="left-box-wrapper" class="col-lg-6 col-sm-12">
             <div id="left-box" class="jumbotron jumbotron-transparent wordwrap">
-                <div id="language-swap" class="material-icons float-right unselectable">swap_horiz</div>
+                <button id="language-swap" class="material-icons float-right unselectable">swap_horiz</button>
                 <h1 id="left-box-h1"></h1>
                 <p id="left-box-p"></p>
             </div>

@@ -6,20 +6,6 @@ var arr;
 // correct answer (button)
 var answer;
 
-$.fn.animateRotate = function(angle, duration, easing, complete) {
-    var args = $.speed(duration, easing, complete);
-    var step = args.step;
-    return this.each(function(i, e) {
-        args.complete = $.proxy(args.complete, e);
-        args.step = function(now) {
-            $.style(e, 'transform', 'rotate(' + now + 'deg)');
-            if (step) return step.apply(e, arguments);
-        };
-
-        $({deg: 0}).animate({deg: angle}, args);
-    });
-};
-
 function randomInt(min, max) {
     return Math.floor((Math.random() * (max - min + 1) + min));
 }
@@ -56,7 +42,7 @@ function getNewVocab(direction){
     //alert(random_item);
 
 
-    // update correct answer
+    // update correct answer and direction
     answer = random_item[0];
     dir_global = direction;
 
@@ -83,47 +69,26 @@ function ready(id) {
         data: { mode:'id', id: id_global },
         success: function (json) {
             arr = $.parseJSON(json);
-            // fill language bar with language 1 + 2
-            // document.getElementById('language-1').innerHTML = arr.lang1 + ' - ' + arr.lang2;
-            // document.getElementById('language-2').innerHTML = arr.lang2 + ' - ' + arr.lang1;
             nextVocab();
         }
     });
-
-    // fade in elements
-    //$('#language-bar').animate({opacity: '1.0'},100);
-    //$('#left-box').animate({opacity: '1.0'}, 100);
-    //$('#right-box').animate({opacity: '1.0'}, 100);
 }
 
-// function navClick(elem, event) {
-//     event.preventDefault();
-//     if (!elem.classList.contains("active")){
-//         elem.classList.toggle("active");
-//         if (elem.id === "language-1"){
-//             document.getElementById("language-2").classList.toggle("active");
-//             getNewVocab(true);
-//         }
-//         else if (elem.id === "language-2") {
-//             document.getElementById("language-1").classList.toggle("active");
-//             getNewVocab(false);
-//         }
-//     }
-// }
-
 function nextVocab () {
-    var wrapper = document.getElementById('right-box-wrapper');
+    $('#language-swap').removeClass('toggle-disabled');
+    var wrapper = $('#right-box-wrapper');
     var html = '<div id="right-box" class="list-group list-transparent">';
     for (var i=0; i<5; i++) {
         html += '<button id="btn-'+ i +'" type="button" class="list-group-item wordwrap" onclick="answerChosen(this);"></button>';
     }
     html += '</div>';
-    wrapper.innerHTML = html;
+    wrapper.html(html);
     getNewVocab(dir_global);
     $('#right-box').animate({opacity: 1}, 150);
 }
 
 function answerChosen(button) {
+    $('#language-swap').addClass('toggle-disabled');
     var wrapper = $('#right-box-wrapper');
     if (button.id === 'btn-' + answer) {
 
@@ -162,7 +127,9 @@ function answerChosen(button) {
 }
 
 $('#language-swap').click(function () {
-    $(this).toggleClass("swapped");
-    dir_global = !dir_global;
-    getNewVocab(dir_global);
+    if (!($(this).hasClass('toggle-disabled'))) {
+        $(this).toggleClass("swapped");
+        dir_global = !dir_global;
+        getNewVocab(dir_global);
+    }
 });
