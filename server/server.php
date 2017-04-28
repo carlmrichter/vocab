@@ -1,6 +1,6 @@
 <?php
 function getFileContent($id, $only_first_line) {
-    $directory = 'training/';
+    $directory = '../training/';
     $files = scandir($directory);
 
     // open file represented by id
@@ -36,6 +36,27 @@ function getFileContent($id, $only_first_line) {
     return json_encode($return);
 }
 
+function deleteStat($id, $file) {
+    $content = json_decode(file_get_contents($file));
+    $content_array = (array)$content;
+    $return['ids'] = array();
+    if (count($content_array) < 2 || $id == -1) {
+        unlink($file);
+        $return['ids'][0] = -1;
+        $return['ids'] = array_merge($return['ids'], array_keys($content_array));
+        return json_encode($return);
+    }
+    unset($content->$id);
+    file_put_contents($file, json_encode($content));
+    $return['ids'][0] = $id;
+    $return['content'] = $content;
+    return json_encode($return);
+}
+
+function getStatsFilename() {
+    return '../stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
+}
+
 if (isset($_POST['mode'])) {
 
     switch ($_POST['mode']) {
@@ -44,13 +65,15 @@ if (isset($_POST['mode'])) {
                 echo getFileContent($_POST['id'], false);
             }
             break;
+
+
         case 'stat':
             $id = $_POST['id'];
-            $filenames = scandir('training/');
-            if (!file_exists('stats/')) {
-                mkdir('stats/');
+            $filenames = scandir('../training/');
+            if (!file_exists('../stats/')) {
+                mkdir('../stats/');
             }
-            $stats = 'stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
+            $stats = getStatsFilename();
             //$stats = 'stats/stats.json';
             $exist = file_exists($stats);
             $filename = $filenames[$id + 2];
@@ -69,12 +92,15 @@ if (isset($_POST['mode'])) {
             fclose($file);
             //echo print_r($content);
             break;
+
+
         case 'get_stats':
-            echo file_get_contents('stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json');
-            //echo file_get_contents('stats/stats.json');
+            echo file_get_contents(getStatsFilename());
             break;
+
+
         case 'list':
-            $directory = 'training/';
+            $directory = '../training/';
             // filenames of directory
             $files = scandir($directory);
             $count = count($files);
@@ -82,7 +108,7 @@ if (isset($_POST['mode'])) {
             // scandir() returns array with first elements: '.' and '..' --> $i = 2
             for ($i = 2; $i < $count; $i++) {
                 $line_cnt = 0;
-                $file = fopen($directory . $files[$i], 'r');
+                $file = fopen($directory.$files[$i], 'r');
                 // get languages from first line of .txt
                 $lang = fgetss($file);
                 $lang = trim(preg_replace('/\s+/', ' ', $lang));
@@ -106,29 +132,41 @@ if (isset($_POST['mode'])) {
             // submit answer array in json format
             echo json_encode($return);
             break;
+
+
         case 'delete_stat':
-            $id = $_POST['id'];
-            $stats = 'stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
-            $id--;
-            $content = json_decode(file_get_contents($stats));
-            $content_array = (array)$content;
-            $return['ids'] = array();
-            if (count($content_array) < 2 || $id == -1) {
-                unlink($stats);
-                $return['ids'][0] = -1;
-                $return['ids'] = array_merge($return['ids'], array_keys($content_array));
-                echo json_encode($return);
-                return;
-            }
-            unset($content->$id);
-            file_put_contents($stats, json_encode($content));
-            $return['ids'][0] = $id;
-            $return['content'] = $content;
-            echo json_encode($return);
+            $id = $_POST['id'] - 1;
+            $stats = getStatsFilename();
+            echo deleteStat($id, $stats);
             break;
+
+
+        case 'delete_file':
+            // TODO delete file physically
+            $id = $_POST['id'];
+            $files = scandir('../training');
+            $file = '../training/'.$files[$id + 2];
+            unlink($file);
+
+            // TODO delete stats for that lesson
+            $stats = getStatsFilename();
+            deleteStat($id,$stats);
+
+            // TODO rearrange ids in stats.json (they will get messed up)
+            $content_read = json_decode(file_get_contents($stats));
+            $content_write = array();
+            $difference = 0;
+            foreach ($content_read as $key => $value) {
+                if ($key == $id) $difference--;
+                $key2 = $ke
+                $content_write->($key-$difference)
+
+            }
+            break;
+
+
         default:
             break;
     }
 }
-
 ?>

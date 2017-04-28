@@ -452,9 +452,7 @@ button, a.btn {
     color: #333333;
 }
 
-.delete-stats {
-    margin-top: -.4rem;
-    padding: .75rem;
+.delete-stats, .delete-file, .edit-file {
     border: 0;
     border-radius: 5rem;
     cursor: pointer;
@@ -464,11 +462,27 @@ button, a.btn {
     transition: background-color 400ms ease;
 }
 
+.delete-stats {
+    margin-top: -.4rem;
+    padding: .75rem;
+}
+
+.delete-file, .edit-file {
+    padding: .5rem;
+    max-width: 2.5rem;
+}
+@media (min-width: 768px) {
+    .edit-file {
+        margin-right: 1rem;
+    }
+}
+
+
 .big-box-wrapper>div>.delete-stats {
     margin-top: -.1rem;
 }
 
-.delete-stats:hover {
+.delete-stats:hover, .delete-file:hover, .edit-file:hover {
     background-color: rgba(225,225,225,0.5);
 }
 
@@ -486,3 +500,23 @@ div.progress-bar.bg-success:hover {
 div.progress-bar.bg-danger:hover {
     background-color: #c94c46 !important;
 }
+
+table, thead, tr, th, td {
+    border-color: rgba(0,0,0,.2) !important;
+}
+
+th, td {
+    vertical-align: middle !important;
+}
+
+tbody>tr {
+    -webkit-transition: background-color .4s ease;
+    -moz-transition: background-color .4s ease;
+    -o-transition: background-color .4s ease;
+    transition: background-color .4s ease;
+}
+
+#edit-wrapper {
+    opacity: 0;
+}
+

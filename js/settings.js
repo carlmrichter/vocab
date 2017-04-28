@@ -1,3 +1,5 @@
+var list;
+
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
@@ -14,7 +16,6 @@ function uploadFile(event){
 function hideAlert() {
     $('#feedback').fadeOut();
 }
-
 
 function uploadData(event) {
     var result = event.target.result;
@@ -79,4 +80,50 @@ function uploadData(event) {
             setTimeout(hideAlert, 8000);
         }
     });
+}
+
+$(document).ready(function () {
+   $.post('server/server.php', { mode: 'list'}, function (json) {
+       list = $.parseJSON(json);
+
+       var wrapper = $('#edit-wrapper');
+       var tbody =  $('#tbody-list');
+
+       if (list.length === 0) {
+            wrapper.css({display: 'none'});
+       }
+       else {
+
+            var html = '';
+            for(var i = 0; i < list.length; i++) {
+                html += '<tr><th scope="row">'+ (i+1) +'</th><td>'+ list[i].name +'</td><td align="right"><i id="edit-'+ i +'" class="material-icons unselectable edit-file">edit_mode</i><i id="delete-'+ i +'" class="material-icons unselectable delete-file">delete</i></td></tr>';
+            }
+
+            tbody.html(html);
+
+            $('.edit-file').click(function () {
+                var str_id = $(this).attr('id');
+                var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
+                editFile(id);
+
+            });
+
+            $('.delete-file').click(function (event) {
+                var str_id = $(this).attr('id');
+                var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
+                deleteFile(id);
+            });
+            wrapper.animate({opacity: 1}, 100);
+       }
+   })
+});
+
+function editFile(id) {
+
+}
+
+function deleteFile(id) {
+    $.post('server/server.php', {mode: 'delete_file', id: id}, function (json) {
+        // TODO delete row with id=... from UI
+    })
 }

@@ -14,10 +14,10 @@ function endsWith($string, $end) {
 $data = $_POST['data'];
 $filename = $_POST['name'];
 $return = array();
-if (!file_exists('training/')) {
-    mkdir('training/');
+if (!file_exists('../training/')) {
+    mkdir('../training/');
 }
-$files = scandir('training/');
+$files = scandir('../training/');
 
 foreach ($files as $f) {
     if ($f == $filename) {
@@ -37,7 +37,7 @@ if (endsWith($filename, '.txt')) {
         if (!isHtml($filename)) {
 
             // check if opening file was successful
-            if ($file = fopen('training/'.$filename, 'w')){
+            if ($file = fopen('../training/'.$filename, 'w')){
 
                 // check if writing file was successful
                 if (fwrite($file, $data)) {
