@@ -89,6 +89,7 @@ $(document).ready(function () {
        var wrapper = $('#edit-wrapper');
        var tbody =  $('#tbody-list');
 
+       wrapper.css({opacity:1});
        if (list.length === 0) {
             wrapper.css({display: 'none'});
        }
@@ -96,7 +97,7 @@ $(document).ready(function () {
 
             var html = '';
             for(var i = 0; i < list.length; i++) {
-                html += '<tr><th scope="row">'+ (i+1) +'</th><td>'+ list[i].name +'</td><td align="right"><i id="edit-'+ i +'" class="material-icons unselectable edit-file">edit_mode</i><i id="delete-'+ i +'" class="material-icons unselectable delete-file">delete</i></td></tr>';
+                html += '<tr><th scope="row">'+ (i+1) +'</th><td class="td-content">'+ list[i].name +'</td><td class="td-icon"><button id="edit-'+ i +'" class="material-icons unselectable edit-file">edit_mode</button></td><td class="td-icon"><button id="delete-'+ i +'" class="material-icons unselectable delete-file">delete</button></td></tr>';
             }
 
             tbody.html(html);
@@ -113,7 +114,7 @@ $(document).ready(function () {
                 var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
                 deleteFile(id);
             });
-            wrapper.animate({opacity: 1}, 100);
+            //wrapper.animate({opacity: 1}, 100);
        }
    })
 });

@@ -292,8 +292,9 @@ div.progress-bar.bg-danger:hover {
 
 .delete-stats, .delete-file, .edit-file {
   border: 0;
-  border-radius: 5rem;
+  border-radius: 99rem;
   cursor: pointer;
+  background-color: transparent;
   -webkit-transition: background-color 400ms ease;
   -moz-transition: background-color 400ms ease;
   -o-transition: background-color 400ms ease;
@@ -306,12 +307,10 @@ div.progress-bar.bg-danger:hover {
   padding: .75rem; }
 
 .delete-file, .edit-file {
-  padding: .5rem;
-  max-width: 2.5rem; }
+  padding: .5rem; }
 
-@media (min-width: 768px) {
-  .edit-file {
-    margin-right: 1rem; } }
+.edit-file {
+  width: 2.5rem !important; }
 
 .big-box-wrapper > div > .delete-stats {
   margin-top: -.1rem; }
@@ -322,10 +321,18 @@ div.progress-bar.bg-danger:hover {
     color: #333333; }
 
 table, thead, tr, th, td {
-  background-color: rgba(0, 0, 0, 0.2) !important; }
+  border-color: rgba(0, 0, 0, 0.2) !important; }
 
 th, td {
-  vertical-align: middle; }
+  vertical-align: middle !important; }
+  th.td-content, td.td-content {
+    width: 100%; }
+  th.td-icon, td.td-icon {
+    padding: .5rem .75rem .5rem 0;
+    width: 1%; }
+    @media (max-width: 767.9px) {
+      th.td-icon, td.td-icon {
+        padding: .5rem .5rem .5rem 0; } }
 
 tbody > tr {
   -webkit-transition: background-color 400ms ease;

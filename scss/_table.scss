@@ -1,5 +1,5 @@
 %table {
-  background-color: $table-color !important;
+  border-color: $table-color !important;
 }
 
 table, thead, tr {
@@ -8,7 +8,19 @@ table, thead, tr {
 
 th, td {
   @extend %table;
-  vertical-align: middle;
+  vertical-align: middle !important;
+
+  &.td-content {
+    width: 100%;
+  }
+
+  &.td-icon {
+    padding: .5rem .75rem .5rem 0;
+    @include max-sm {
+      padding: .5rem .5rem .5rem 0;
+    }
+    width: 1%;
+  }
 }
 
 tbody > tr {
