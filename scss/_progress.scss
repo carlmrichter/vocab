@@ -1,0 +1,38 @@
+%progress-custom {
+  background-color: transparent;
+  margin-bottom: .5rem;
+}
+
+.progress-custom-small {
+  @extend %progress-custom;
+  height: 1rem;
+  margin-top: .75rem;
+}
+
+.progress-custom-big {
+  @extend %progress-custom;
+  height: 2.5rem;
+  margin-top: 1rem;
+}
+
+%progress-bg-custom {
+  @include transition(background-color $trans-speed-normal ease);
+}
+
+div.progress-bar {
+  &.bg-success {
+    @extend %progress-bg-custom;
+
+    &:hover {
+      background-color: $progress-success-hover-color !important;
+    }
+  }
+
+  &.bg-danger {
+    @extend %progress-bg-custom;
+
+    &:hover {
+      background-color: $progress-danger-hover-color !important;
+    }
+  }
+}

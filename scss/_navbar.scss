@@ -1,0 +1,66 @@
+.navbar {
+  padding: 0 0;
+
+  .nav-item {
+    margin-left: .75rem;
+
+    @include max-sm {
+      margin-left: 2rem;
+    }
+  }
+
+  #menu-toggler {
+    border: 0;
+    left: 0;
+    border-radius: 5rem;
+    padding: .25rem .5rem;
+    margin-top: .05rem;
+    @include transition(background-color $trans-speed-normal ease);
+
+    &:hover {
+      background-color: $nav-hover-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    i {
+      padding-top: .2rem;
+    }
+  }
+
+
+  @include max-sm {
+    .navbar-brand {
+      margin-left: 3.5rem;
+      margin-bottom: .5rem;
+    }
+
+    .nav-link {
+      margin-left: 1.5rem;
+    }
+
+    #mainNavBar {
+      margin-top: 0;
+      @include border-radius(.25rem);
+      background-color: transparent;
+      @include transition(margin .2s);
+
+      &.show, &.collapsing {
+        background-color: $nav-hover-color;
+        @include transition(all $trans-speed-normal ease);
+      }
+    }
+  }
+
+  @include min-md {
+    .nav-link {
+      @include transition(box-shadow $trans-speed-normal ease);
+
+      &:hover, &:focus {
+        @include box-shadow(0 -2px $color-light inset);
+      }
+    }
+  }
+}

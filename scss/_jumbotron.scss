@@ -1,0 +1,45 @@
+.jumbotron {
+  @include min-sm {
+    padding: 2.5rem 2.5rem;
+  }
+}
+
+.jumbotron-transparent {
+  color: $color-dark;
+  background-color: $bg-color;
+  margin-bottom: 0;
+  @include transition(all $trans-speed-fast ease);
+}
+
+%jumbotron-transparent-answer {
+  color: $color-light;
+  button {
+    border: 0;
+    margin-left: 70%;
+    width: 30%;
+    background-color: $color-light;
+    @include transition(all $trans-speed-fast ease);
+
+    &:hover, &:focus {
+      background-color: $color-light-hover;
+    }
+  }
+}
+
+.jumbotron-transparent-correct {
+  @extend %jumbotron-transparent-answer;
+  background-color: $bg-color-green;
+
+  button {
+    color: $color-green;
+  }
+}
+
+.jumbotron-transparent-wrong {
+  @extend %jumbotron-transparent-answer;
+  background-color: $bg-color-red;
+
+  button {
+    color: $color-red;
+  }
+}

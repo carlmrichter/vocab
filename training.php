@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     <!-- tether css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/vocab.min.css">
 </head>
 <body>
 

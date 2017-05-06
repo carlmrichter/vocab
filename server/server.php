@@ -153,15 +153,15 @@ if (isset($_POST['mode'])) {
             deleteStat($id,$stats);
 
             // TODO rearrange ids in stats.json (they will get messed up)
-            $content_read = json_decode(file_get_contents($stats));
-            $content_write = array();
-            $difference = 0;
-            foreach ($content_read as $key => $value) {
-                if ($key == $id) $difference--;
-                $key2 = $ke
-                $content_write->($key-$difference)
-
-            }
+//            $content_read = json_decode(file_get_contents($stats));
+//            $content_write = array();
+//            $difference = 0;
+//            foreach ($content_read as $key => $value) {
+//                if ($key == $id) $difference--;
+//                $key2 = $ke
+//                $content_write->($key-$difference)
+//
+//            }
             break;
 
 

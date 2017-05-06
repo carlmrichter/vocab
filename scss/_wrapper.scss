@@ -1,0 +1,64 @@
+#content-wrapper {
+  padding-left: $standard-padding;
+  padding-right: $standard-padding;
+}
+
+.navbar-wrapper, .content-wrapper {
+  padding-top: 1rem;
+  @include transition(width 150ms ease);
+
+  @include min-md {
+    padding-top: 2rem;
+  }
+}
+
+@include max-sm {
+  .navbar-wrapper {
+    padding-left: $standard-padding;
+    padding-right: $standard-padding;
+  }
+  .content-wrapper {
+    padding-left: $standard-padding + 0.75rem;
+    padding-right: $standard-padding + 0.75rem;
+  }
+}
+
+#left-box-wrapper {
+  margin-bottom: .5rem;
+  @include min-md {
+    padding-right: .25rem;
+  }
+}
+
+#right-box-wrapper {
+  @include min-md {
+    padding-left: .25rem;
+  }
+}
+
+%box-wrapper {
+  @include transition(all $trans-speed-fast ease);
+}
+
+.box-wrapper {
+  @extend %box-wrapper;
+  padding: 0 .25rem .5rem .25rem;
+
+  .jumbotron {
+    height: 100%;
+  }
+}
+
+.small-box-wrapper {
+  @extend %box-wrapper;
+  padding: .25rem;
+}
+
+.big-box-wrapper {
+  @extend %box-wrapper;
+  padding: 0 .25rem .25rem .25rem;
+}
+
+#edit-wrapper {
+  opacity: 0;
+}

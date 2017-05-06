@@ -1,0 +1,33 @@
+// speeds
+$trans-speed-normal: 400ms;
+$trans-speed-fast: 250ms;
+
+// sizes
+$standard-padding: 0.5rem;
+
+// colors
+$color-light: #dddddd;
+$color-light-hover: #c0c0c0;
+$color-dark: #333333;
+$color-red: #B71C1C;
+$color-green: #2E7D32;
+
+$nav-hover-color: rgba(255,255,255,0.1);
+$button-hover-color: rgba(225,225,225,0.5);
+$bg-color: rgba(225,225,225,0.75);
+$bg-color-red: rgba(183, 28, 28, 0.8);
+$bg-color-green: rgba(46, 125, 50, 0.8);
+$list-hover-color: rgba(225,225,225,0.9);
+
+$progress-success-hover-color: #48b54d;
+$progress-danger-hover-color: #c94c46;
+
+$table-color: rgba(0,0,0,.2);
+
+// responsive borders
+$min-lg: 992px;
+$max-md: 991.9px;
+$min-md: 768px;
+$max-sm: 767.9px;
+$min-sm: 576px;
+$max-xs: 575.9px;
