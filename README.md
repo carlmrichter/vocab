@@ -37,3 +37,6 @@
 - [Twitter Bootstrap](http://getbootstrap.com/) v4.0.0-alpha.6
 - [jQuery](https://jquery.com/) v3.2.1
 - [Tether](http://tether.io/) v1.4.0 - tooltips
+
+## Images
+- from [Pexels](https://www.pexels.com/) (CC0)
