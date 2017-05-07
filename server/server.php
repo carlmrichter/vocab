@@ -7,7 +7,7 @@ function getFileContent($id, $only_first_line) {
     $file = fopen($directory.$files[$id + 2], 'r');
 
     // get both language names out of first line of file
-    $languages = explode(' - ', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
+    $languages = explode(';', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
 
     if ($only_first_line) {
         fclose($file);
@@ -22,7 +22,7 @@ function getFileContent($id, $only_first_line) {
 
     $return['content'] = array();
     for($i = 0, $count = 0; !feof($file); $i++, $count++) {
-        $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
+        $line = explode(';', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
         if($line[0] == '\n' || $line[0] == ''){
             $count--;
             continue;
@@ -76,7 +76,8 @@ if (isset($_POST['mode'])) {
             $stats = getStatsFilename();
             //$stats = 'stats/stats.json';
             $exist = file_exists($stats);
-            $filename = $filenames[$id + 2];
+
+            $filename = explode('.', $filenames[$id + 2])[0];
             $content = json_decode(file_get_contents($stats));
             //if (!$exist) chmod($stats, 0777);
             $content->$id->filename = $filename;
@@ -109,12 +110,12 @@ if (isset($_POST['mode'])) {
             for ($i = 2; $i < $count; $i++) {
                 $line_cnt = 0;
                 $file = fopen($directory.$files[$i], 'r');
-                // get languages from first line of .txt
+                // get languages from first line of .csv
                 $lang = fgetss($file);
                 $lang = trim(preg_replace('/\s+/', ' ', $lang));
                 // count lines
                 for ($line_cnt = 0; !feof($file); $line_cnt++) {
-                    $line = explode(' : ', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
+                    $line = explode(';', trim(preg_replace('/\s+/', ' ', fgets($file))), 2);
                     if ($line[0] == '\n' || $line[0] == '') {
                         $line_cnt--;
                     }
@@ -124,10 +125,11 @@ if (isset($_POST['mode'])) {
                 $filename_no_ext = explode('.', $files[$i]);
                 //build answer array
                 $return[$i - 2] = array();
-                $return[$i - 2]['name'] = $lang . ': ' . $filename_no_ext[0];
+                $return[$i - 2]['name'] = str_replace(';', ' - ', $lang) . ': ' . $filename_no_ext[0];
                 //$return[$i-2]['lang1'] = $languages[0];
                 //$return[$i-2]['lang2'] = $languages[1];
                 $return[$i - 2]['line_cnt'] = $line_cnt;
+                $return[$i - 2]['ext'] = $filename_no_ext[1];
             }
             // submit answer array in json format
             echo json_encode($return);

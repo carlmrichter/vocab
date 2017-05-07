@@ -19,6 +19,7 @@ if (!file_exists('../training/')) {
 }
 $files = scandir('../training/');
 
+// check if file already exists
 foreach ($files as $f) {
     if ($f == $filename) {
         $return['success'] = false;
@@ -27,8 +28,8 @@ foreach ($files as $f) {
         return;
     }
 }
-// check if file is a .txt file
-if (endsWith($filename, '.txt')) {
+// check if file is a .txt or .csv file
+if (endsWith($filename, '.csv') || endsWith($filename, '.txt')) {
 
     // check if file is empty
         if ($data != '') {

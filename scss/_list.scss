@@ -1,16 +1,21 @@
-.list-transparent>.list-group-item {
+.list-transparent > .list-group-item {
   background-color: $bg-color;
   color: $color-dark;
   margin-bottom: .0675rem;
   text-align: left;
   @include transition(background-color .3s ease);
 
-  &:hover, &:focus {
+  &:hover {
     background-color: $list-hover-color;
   }
 }
 
-#training-list>button {
+#training-list > button {
+
+  @include max-sm {
+    padding: 1rem 1rem;
+  }
+
   @include max-xs {
     padding-left: .75rem;
   }
@@ -25,7 +30,7 @@
 
       .badge-default {
         background-color: $color-dark;
-        color: $bg-color;
+        color: $color-light;
         margin-right: .3rem;
         @include max-xs {
           margin-right: 0;

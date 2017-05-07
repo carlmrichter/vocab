@@ -48,7 +48,7 @@
 
 <div class="container content-wrapper">
     <div class="row">
-        <div class="col-sm-12 col-lg-5 col-xl-5 box-wrapper">
+        <!--<div class="col-lg-12 col-xl-4 box-wrapper">
             <div class="jumbotron jumbotron-transparent">
                 <h1 class="display-4">Language</h1>
                 <p class="lead">Don't speak german? No worries.</p>
@@ -58,38 +58,20 @@
                     <button class="btn btn-primary btn-lg vertical-align"><i class="material-icons" style="padding-right: .5rem">language</i>Change language</button>
                 </p>
             </div>
-        </div>
-        <div class="col-sm-12 col-lg-7 col-xl-7 box-wrapper">
+        </div>-->
+        <div id="edit-wrapper" class="col-lg-12 box-wrapper">
             <div class="jumbotron jumbotron-transparent">
-                <h1 class="display-4">Lektion hinzufügen</h1>
-                <p class="lead">Lektionen online erstellen oder hochladen</p>
-                <hr class="my-2">
-                <p></p>
-                <p class="lead">
-                    <button class="btn btn-primary btn-lg margin vertical-align"><i class="material-icons" aria-hidden="true" style="padding-right: .5rem">insert_drive_file</i>Lektion erstellen</button><button class="btn btn-primary btn-lg margin vertical-align" data-toggle="modal" data-target="#upload-modal"><i class="material-icons" aria-hidden="true" style="padding-right: .5rem">file_upload</i>Datei hochladen</button>
-                </p>
-            </div>
-        </div>
-        <div id="edit-wrapper" class="col-12 box-wrapper">
-            <div class="jumbotron jumbotron-transparent">
-                <h1 class="display-4">Lektion bearbeiten</h1>
-                <p class="lead" style="margin-bottom: 2rem">bestehende Lektionen löschen oder bearbeiten</p>
+                <h1 class="display-4">Lektionen</h1>
+                <p class="lead">Lektionen online erstellen, hochladen, bearbeiten oder löschen</p>
+                <hr class="my-3">
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-lg vertical-align"><i class="material-icons" aria-hidden="true">insert_drive_file</i><span>Lektion erstellen</span></button>
+                        <button class="btn btn-primary btn-lg vertical-align" data-toggle="modal" data-target="#upload-modal"><i class="material-icons" aria-hidden="true">file_upload</i><span>Datei hochladen</span></button>
+                    </div>
+                </div>
                 <table class="table table-hover">
                     <tbody id="tbody-list">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -112,13 +94,12 @@
                     <div class="form-group">
                         <input id="userfile" type="file" class="form-control-file" accept=".txt"/>
                         <small class="form-text text-muted">
-                            Lektionsdateien müssen im <code>.txt</code>-Format hochgeladen werden und dürfen maximal 100 KB groß sein. Dateien mit HTML- bzw. PHP-Tags im Namen sind nicht erlaubt.
+                            Lektionsdateien können als <code>.txt</code> oder <code>.csv</code> hochgeladen werden und dürfen maximal 100 KB groß sein. Dateien mit HTML- bzw. PHP-Tags im Namen sind nicht erlaubt.
                         </small>
                     </div>
                     <div id="feedback" class="alert" role="alert"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
                     <button id="button-upload" type="submit" class="btn btn-primary vertical-align"><i class="material-icons" aria-hidden="true" style="padding-right: .25rem">file_upload</i>Hochladen</button>
                 </div>
             </form>

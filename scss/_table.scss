@@ -9,9 +9,43 @@ table, thead, tr {
 th, td {
   @extend %table;
   vertical-align: middle !important;
+  border-top: none !important;
+  border-bottom: 1px solid $color-dark;
+
+  .badge-default {
+    background-color: $color-dark;
+    color: $color-light;
+    float: right;
+
+    @include max-sm {
+      display: none;
+    }
+  }
 
   &.td-content {
     width: 100%;
+
+    > .badge-default {
+      margin-top: .25rem;
+      margin-right: .5rem;
+    }
+  }
+
+  &.th-icon {
+
+    > .badge-default {
+      background-color: $color-dark;
+      > div {
+        margin-top: .55rem;
+      }
+
+      border-radius: 99rem;
+      height: 2.25rem;
+      width: 2.25rem;
+    }
+    @include max-sm {
+      padding: 0;
+    }
   }
 
   &.td-icon {
@@ -21,6 +55,19 @@ th, td {
     }
     width: 1%;
   }
+}
+
+.delete-file {
+  @extend %round-button;
+  padding: .5rem;
+}
+
+.edit-file {
+  @extend .delete-file;
+  &:hover {
+    color: $color-light;
+  }
+  width: 2.5rem !important;
 }
 
 tbody > tr {

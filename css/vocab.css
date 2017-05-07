@@ -140,9 +140,12 @@ button, a.btn {
   -moz-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease; }
-  .list-transparent > .list-group-item:hover, .list-transparent > .list-group-item:focus {
+  .list-transparent > .list-group-item:hover {
     background-color: rgba(225, 225, 225, 0.9); }
 
+@media (max-width: 767.9px) {
+  #training-list > button {
+    padding: 1rem 1rem; } }
 @media (max-width: 575.9px) {
   #training-list > button {
     padding-left: .75rem; } }
@@ -154,7 +157,7 @@ button, a.btn {
       right: .5rem; } }
   #training-list > button span.float-right .badge-default {
     background-color: #333333;
-    color: rgba(225, 225, 225, 0.75);
+    color: #dddddd;
     margin-right: .3rem; }
     @media (max-width: 575.9px) {
       #training-list > button span.float-right .badge-default {
@@ -227,10 +230,21 @@ div.progress-bar.bg-success:hover {
 div.progress-bar.bg-danger:hover {
   background-color: #c94c46 !important; }
 
+.btn-toolbar {
+  border-radius: .25rem;
+  margin-bottom: 1rem; }
+
 .btn-primary {
-  background-color: #dddddd;
-  color: #333333;
-  border: 0; }
+  border: 1px solid rgba(51, 51, 51, 0.8);
+  background-color: transparent;
+  color: #333333; }
+  .btn-primary > i {
+    padding-right: .5rem; }
+  @media (max-width: 767.9px) {
+    .btn-primary > i {
+      padding: 0; }
+    .btn-primary > span {
+      display: none; } }
   .btn-primary.margin {
     margin: 0 .5rem .5rem 0; }
   .btn-primary:hover, .btn-primary:focus {
@@ -295,22 +309,18 @@ div.progress-bar.bg-danger:hover {
   border-radius: 99rem;
   cursor: pointer;
   background-color: transparent;
-  -webkit-transition: background-color 400ms ease;
-  -moz-transition: background-color 400ms ease;
-  -o-transition: background-color 400ms ease;
-  transition: background-color 400ms ease; }
+  color: #333333;
+  -webkit-transition: background-color 400ms ease, color 400ms ease;
+  -moz-transition: background-color 400ms ease, color 400ms ease;
+  -o-transition: background-color 400ms ease, color 400ms ease;
+  transition: background-color 400ms ease, color 400ms ease; }
   .delete-stats:hover, .delete-file:hover, .edit-file:hover {
-    background-color: rgba(225, 225, 225, 0.5); }
+    background-color: #333333;
+    color: #c94c46; }
 
 .delete-stats {
   margin-top: -.4rem;
   padding: .75rem; }
-
-.delete-file, .edit-file {
-  padding: .5rem; }
-
-.edit-file {
-  width: 2.5rem !important; }
 
 .big-box-wrapper > div > .delete-stats {
   margin-top: -.1rem; }
@@ -324,15 +334,45 @@ table, thead, tr, th, td {
   border-color: rgba(0, 0, 0, 0.2) !important; }
 
 th, td {
-  vertical-align: middle !important; }
+  vertical-align: middle !important;
+  border-top: none !important;
+  border-bottom: 1px solid #333333; }
+  th .badge-default, td .badge-default {
+    background-color: #333333;
+    color: #dddddd;
+    float: right; }
+    @media (max-width: 767.9px) {
+      th .badge-default, td .badge-default {
+        display: none; } }
   th.td-content, td.td-content {
     width: 100%; }
+    th.td-content > .badge-default, td.td-content > .badge-default {
+      margin-top: .25rem;
+      margin-right: .5rem; }
+  th.th-icon > .badge-default, td.th-icon > .badge-default {
+    background-color: #333333;
+    border-radius: 99rem;
+    height: 2.25rem;
+    width: 2.25rem; }
+    th.th-icon > .badge-default > div, td.th-icon > .badge-default > div {
+      margin-top: .55rem; }
+  @media (max-width: 767.9px) {
+    th.th-icon, td.th-icon {
+      padding: 0; } }
   th.td-icon, td.td-icon {
     padding: .5rem .75rem .5rem 0;
     width: 1%; }
     @media (max-width: 767.9px) {
       th.td-icon, td.td-icon {
         padding: .5rem .5rem .5rem 0; } }
+
+.delete-file, .edit-file {
+  padding: .5rem; }
+
+.edit-file {
+  width: 2.5rem !important; }
+  .edit-file:hover {
+    color: #dddddd; }
 
 tbody > tr {
   -webkit-transition: background-color 400ms ease;

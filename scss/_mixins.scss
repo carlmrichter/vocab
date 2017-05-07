@@ -39,6 +39,12 @@
   user-select: $value;
 }
 
+@mixin min-xl {
+  @media (min-width: $min-xl) {
+    @content;
+  }
+}
+
 @mixin min-lg {
   @media (min-width: $min-lg) {
     @content;

@@ -27,10 +27,3 @@ function loadEntries() {
 $(document).ready(function () {
     loadEntries();
 });
-
-// $('#menu-toggler').click(function () {
-//    if ($(this).hasClass('collapsed'))
-//        $('#mainNavBar').addClass('toggled');
-//    else
-//        $('#mainNavBar').removeClass('toggled');
-// });

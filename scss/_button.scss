@@ -1,7 +1,24 @@
+.btn-toolbar {
+  border-radius: .25rem;
+  margin-bottom: 1rem;
+}
+
 .btn-primary {
-  background-color: $color-light;
+  border: 1px solid rgba($color-dark, 0.8);
+  background-color: transparent;
   color: $color-dark;
-  border: 0;
+  > i {
+    padding-right: .5rem;
+  }
+
+  @include max-sm {
+    > i {
+      padding: 0;
+    }
+    > span {
+      display: none;
+    }
+  }
 
   &.margin {
     margin: 0 .5rem .5rem 0;
@@ -65,10 +82,12 @@
   border-radius: 99rem;
   cursor: pointer;
   background-color: transparent;
-  @include transition(background-color $trans-speed-normal ease);
+  color: $color-dark;
+  @include transition(background-color $trans-speed-normal ease, color $trans-speed-normal ease);
 
   &:hover {
-    background-color: $button-hover-color;
+    background-color: $color-dark;
+    color: $progress-danger-hover-color;
   }
 }
 
@@ -78,16 +97,6 @@
   padding: .75rem;
 }
 
-.delete-file {
-  @extend %round-button;
-  padding: .5rem;
-}
-
-.edit-file {
-  @extend .delete-file;
-  width: 2.5rem !important;
-}
-
-.big-box-wrapper>div>.delete-stats {
+.big-box-wrapper > div > .delete-stats {
   margin-top: -.1rem;
 }
