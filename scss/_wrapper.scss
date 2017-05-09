@@ -25,13 +25,13 @@
 
 #left-box-wrapper {
   margin-bottom: .5rem;
-  @include min-md {
+  @include min-lg {
     padding-right: .25rem;
   }
 }
 
 #right-box-wrapper {
-  @include min-md {
+  @include min-lg {
     padding-left: .25rem;
   }
 }

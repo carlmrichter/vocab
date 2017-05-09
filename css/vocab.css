@@ -103,11 +103,11 @@ button, a.btn {
     padding-right: 1.25rem; } }
 #left-box-wrapper {
   margin-bottom: .5rem; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     #left-box-wrapper {
       padding-right: .25rem; } }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   #right-box-wrapper {
     padding-left: .25rem; } }
 
