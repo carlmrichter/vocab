@@ -5,26 +5,36 @@ var dir_global = true;
 var arr;
 // correct answer (button)
 var answer;
+// counter for current vocable
+var current = 0;
+// array for shuffled vocable ids
+var list;
+
 
 function randomInt(min, max) {
     return Math.floor((Math.random() * (max - min + 1) + min));
 }
 
-function randomIntArray(min, max, length) {
+function randomIntArray(min, max, length, exclude) {
 
+    exclude = (typeof exclude === 'undefined') ? null : exclude;
     // parameter validation
     if (max - min < 1) {
         return null;
     }
-    var len = (length-1 <= (max - min) ? length : (max - min + 1));
+    //var len = (length-1 <= (max - min) ? length : (max - min + 1));
 
     var numbers = [], array = [], random;
-    for (var z = min, i = 0; z <= max; z++, i++){
+    for (var z = min, i = 0; z <= max; z++){
+        if (z === exclude) {
+            continue;
+        }
         numbers[i] = z;
+        i++;
     }
-    for(var j = max-min; len; len--, j--) {
+    for(var len = numbers.length-1; len; len--) {
         // select random number from numbers
-        random = randomInt(0, j);
+        random = randomInt(0, len);
         // add number to final array
         array.push(numbers[random]);
         //delete that number from numbers
@@ -35,11 +45,13 @@ function randomIntArray(min, max, length) {
 
 function getNewVocab(direction){
     // random numbers for vocabulary
-    var random = randomIntArray(0, arr.count-1, 5);
+    var random = [list[current]];
+    random = random.concat(randomIntArray(0, arr.count-1, 4, list[current]));
     // random numbers to place items in list (right box)
     var random_item = randomIntArray(0, 4, 5);
-    //alert(random);
-    //alert(random_item);
+    alert("current="+ current);
+    alert("random="+random);
+    alert("random_item=" + random_item);
 
 
     // update correct answer and direction
@@ -58,6 +70,8 @@ function getNewVocab(direction){
     for(var i = 0; i < 5; i++) {
         document.getElementById('btn-' + random_item[i]).innerHTML = arr.content[random[i]][(direction ? 1 : 0)];
     }
+
+    current++;
 }
 
 function ready(id) {
@@ -69,6 +83,7 @@ function ready(id) {
         data: { mode:'id', id: id_global },
         success: function (json) {
             arr = $.parseJSON(json);
+            list = randomIntArray(0, arr.count-1, arr.count-1);
             nextVocab();
         }
     });

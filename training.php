@@ -50,8 +50,6 @@ if (isset($_GET['id'])) {
 </div>
 
 <div id="content-wrapper" class="container content-wrapper">
-<!--<div id="language-nav"><a id="language-1" onclick="navClick(this, event);" class="btn btn-nav active"></a><a id="language-2" onclick="navClick(this, event);" class="btn btn-nav"></a></div>
--->
     <div class="row">
         <div id="left-box-wrapper" class="col-lg-6 col-sm-12">
             <div id="left-box" class="jumbotron jumbotron-transparent wordwrap">
