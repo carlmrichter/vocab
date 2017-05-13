@@ -16,12 +16,14 @@
 }
 
 %progress-bg-custom {
-  @include transition(background-color $trans-speed-normal ease);
+  @include transition(background-color $trans-speed-normal ease, width $trans-speed-normal ease);
 }
 
 div.progress-bar {
+
   &.bg-success {
     @extend %progress-bg-custom;
+    width: 0;
 
     &:hover {
       background-color: $progress-success-hover-color !important;
@@ -30,9 +32,21 @@ div.progress-bar {
 
   &.bg-danger {
     @extend %progress-bg-custom;
+    width: 100%;
 
     &:hover {
       background-color: $progress-danger-hover-color !important;
+    }
+  }
+}
+
+#progress-wrapper {
+  .progress {
+    background-color: rgba(225,225,225, 0.3);
+    #progress-lesson {
+      background-color: rgba(225,225,225,0.6);
+      width: 0;
+      @include transition(width $trans-speed-normal ease);
     }
   }
 }

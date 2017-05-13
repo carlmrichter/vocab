@@ -60,6 +60,9 @@ th, td {
 .delete-file {
   @extend %round-button;
   padding: .5rem;
+  &:focus {
+    outline: none;
+  }
 }
 
 .edit-file {

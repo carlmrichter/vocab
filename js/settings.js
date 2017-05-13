@@ -84,37 +84,32 @@ function uploadData(event) {
 
 $(document).ready(function () {
    $.post('server/server.php', { mode: 'list'}, function (json) {
-       list = $.parseJSON(json);
+        list = $.parseJSON(json);
 
-       var wrapper = $('#edit-wrapper');
-       var tbody =  $('#tbody-list');
+        var wrapper = $('#edit-wrapper');
+        var tbody =  $('#tbody-list');
 
-       if (list.length === 0) {
-            wrapper.css({display: 'none'});
-       }
-       else {
-            wrapper.css({opacity:1});
-            var html = '';
-            for(var i = 0; i < list.length; i++) {
-                html += '<tr><th class="th-icon" scope="row"><span class="badge badge-default unselectable"><div>'+ list[i].line_cnt +'</div></span></th><td class="td-content">'+ list[i].name +'<span class="badge badge-default unselectable">'+ list[i].ext.toUpperCase() +'</span></td><td class="td-icon"><button id="edit-'+ i +'" class="material-icons unselectable edit-file">edit_mode</button></td><td class="td-icon"><button id="delete-'+ i +'" class="material-icons unselectable delete-file">delete</button></td></tr>';
-            }
+        var html = '';
+        for(var i = 0; i < list.length; i++) {
+            html += '<tr><th class="th-icon" scope="row"><span class="badge badge-default unselectable"><div>'+ list[i].line_cnt +'</div></span></th><td class="td-content">'+ list[i].name +'<span class="badge badge-default unselectable">'+ list[i].ext.toUpperCase() +'</span></td><td class="td-icon"><button id="edit-'+ i +'" class="material-icons unselectable edit-file">edit_mode</button></td><td class="td-icon"><button id="delete-'+ i +'" class="material-icons unselectable delete-file">delete</button></td></tr>';
+        }
 
-            tbody.html(html);
+        tbody.html(html);
 
-            $('.edit-file').click(function () {
-                var str_id = $(this).attr('id');
-                var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
-                editFile(id);
+        // $('.edit-file').click(function () {
+        //     var str_id = $(this).attr('id');
+        //     var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
+        //     editFile(id);
+        //
+        // });
+        //
+        // $('.delete-file').click(function (event) {
+        //     var str_id = $(this).attr('id');
+        //     var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
+        //     deleteFile(id);
+        // });
+        //wrapper.animate({opacity: 1}, 100);
 
-            });
-
-            $('.delete-file').click(function (event) {
-                var str_id = $(this).attr('id');
-                var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
-                deleteFile(id);
-            });
-            //wrapper.animate({opacity: 1}, 100);
-       }
    })
 });
 

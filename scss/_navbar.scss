@@ -30,10 +30,14 @@
     }
   }
 
+  #mainNavBar {
+    @include transition(all $trans-speed-normal ease);
+  }
+
   @include max-sm {
     .navbar-brand {
       margin-left: 3.5rem;
-      margin-bottom: .5rem;
+      //margin-bottom: .5rem;
     }
 
     .nav-link {
@@ -41,14 +45,13 @@
     }
 
     #mainNavBar {
-      margin-top: 0;
+      margin-top: .5rem;
       @include border-radius(.25rem);
       background-color: transparent;
-      @include transition(margin .2s);
+      @include transition(all $trans-speed-normal ease);
 
       &.show, &.collapsing {
         background-color: $nav-hover-color;
-        @include transition(all $trans-speed-normal ease);
       }
     }
   }

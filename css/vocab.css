@@ -41,33 +41,33 @@ button, a.btn {
     -o-transition: background-color 400ms ease;
     transition: background-color 400ms ease; }
     .navbar #menu-toggler:hover {
-      background-color: rgba(255, 255, 255, 0.1); }
+      background-color: rgba(225, 225, 225, 0.15); }
     .navbar #menu-toggler:focus {
       outline: none; }
     .navbar #menu-toggler i {
       padding-top: .2rem; }
+  .navbar #mainNavBar {
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease; }
   @media (max-width: 767.9px) {
     .navbar .navbar-brand {
-      margin-left: 3.5rem;
-      margin-bottom: .5rem; }
+      margin-left: 3.5rem; }
     .navbar .nav-link {
       margin-left: 1.5rem; }
     .navbar #mainNavBar {
-      margin-top: 0;
+      margin-top: .5rem;
       -webkit-border-radius: 0.25rem;
       -moz-border-radius: 0.25rem;
       border-radius: 0.25rem;
       background-color: transparent;
-      -webkit-transition: margin 0.2s;
-      -moz-transition: margin 0.2s;
-      -o-transition: margin 0.2s;
-      transition: margin 0.2s; }
+      -webkit-transition: all 400ms ease;
+      -moz-transition: all 400ms ease;
+      -o-transition: all 400ms ease;
+      transition: all 400ms ease; }
       .navbar #mainNavBar.show, .navbar #mainNavBar.collapsing {
-        background-color: rgba(255, 255, 255, 0.1);
-        -webkit-transition: all 400ms ease;
-        -moz-transition: all 400ms ease;
-        -o-transition: all 400ms ease;
-        transition: all 400ms ease; } }
+        background-color: rgba(225, 225, 225, 0.15); } }
   @media (min-width: 768px) {
     .navbar .nav-link {
       -webkit-transition: box-shadow 400ms ease;
@@ -91,7 +91,10 @@ button, a.btn {
   transition: width 150ms ease; }
   @media (min-width: 768px) {
     .navbar-wrapper, .content-wrapper {
-      padding-top: 2rem; } }
+      padding-top: 1.5rem; } }
+
+.content-wrapper {
+  display: none; }
 
 @media (max-width: 767.9px) {
   .navbar-wrapper {
@@ -128,8 +131,8 @@ button, a.btn {
 .big-box-wrapper {
   padding: 0 .25rem .25rem .25rem; }
 
-#edit-wrapper {
-  opacity: 0; }
+#progress-wrapper {
+  padding-bottom: 0.5rem; }
 
 .list-transparent > .list-group-item {
   background-color: rgba(225, 225, 225, 0.75);
@@ -220,15 +223,29 @@ button, a.btn {
   margin-top: 1rem; }
 
 div.progress-bar.bg-success, div.progress-bar.bg-danger {
-  -webkit-transition: background-color 400ms ease;
-  -moz-transition: background-color 400ms ease;
-  -o-transition: background-color 400ms ease;
-  transition: background-color 400ms ease; }
+  -webkit-transition: background-color 400ms ease, width 400ms ease;
+  -moz-transition: background-color 400ms ease, width 400ms ease;
+  -o-transition: background-color 400ms ease, width 400ms ease;
+  transition: background-color 400ms ease, width 400ms ease; }
 
-div.progress-bar.bg-success:hover {
-  background-color: #48b54d !important; }
-div.progress-bar.bg-danger:hover {
-  background-color: #c94c46 !important; }
+div.progress-bar.bg-success {
+  width: 0; }
+  div.progress-bar.bg-success:hover {
+    background-color: #48b54d !important; }
+div.progress-bar.bg-danger {
+  width: 100%; }
+  div.progress-bar.bg-danger:hover {
+    background-color: #c94c46 !important; }
+
+#progress-wrapper .progress {
+  background-color: rgba(225, 225, 225, 0.3); }
+  #progress-wrapper .progress #progress-lesson {
+    background-color: rgba(225, 225, 225, 0.6);
+    width: 0;
+    -webkit-transition: width 400ms ease;
+    -moz-transition: width 400ms ease;
+    -o-transition: width 400ms ease;
+    transition: width 400ms ease; }
 
 .btn-toolbar {
   border-radius: .25rem;
@@ -368,6 +385,8 @@ th, td {
 
 .delete-file, .edit-file {
   padding: .5rem; }
+  .delete-file:focus, .edit-file:focus {
+    outline: none; }
 
 .edit-file {
   width: 2.5rem !important; }

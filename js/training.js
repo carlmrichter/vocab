@@ -49,9 +49,9 @@ function getNewVocab(direction){
     random = random.concat(randomIntArray(0, arr.count-1, 4, list[current]));
     // random numbers to place items in list (right box)
     var random_item = randomIntArray(0, 4, 5);
-    alert("current="+ current);
-    alert("random="+random);
-    alert("random_item=" + random_item);
+    // alert("current="+ current);
+    // alert("random="+random);
+    // alert("random_item=" + random_item);
 
 
     // update correct answer and direction
@@ -70,8 +70,6 @@ function getNewVocab(direction){
     for(var i = 0; i < 5; i++) {
         document.getElementById('btn-' + random_item[i]).innerHTML = arr.content[random[i]][(direction ? 1 : 0)];
     }
-
-    current++;
 }
 
 function ready(id) {
@@ -90,6 +88,15 @@ function ready(id) {
 }
 
 function nextVocab () {
+    current++;
+    if (current === arr.count) {
+        current = 0;
+        // reset progress bar
+        $('#progress-lesson').css({width: 0});
+        // shuffle vocables
+        list = randomIntArray(0, arr.count-1, arr.count);
+    }
+
     $('#language-swap').removeClass('toggle-disabled');
     var wrapper = $('#right-box-wrapper');
     var html = '<div id="right-box" class="list-group list-transparent">';
@@ -104,6 +111,11 @@ function nextVocab () {
 
 function answerChosen(button) {
     $('#language-swap').addClass('toggle-disabled');
+    // update progress bar
+    var newWidth = Math.round(current/(arr.count)*100);
+    //alert(newWidth);
+    $('#progress-lesson').css({width: newWidth + "%"});
+
     var wrapper = $('#right-box-wrapper');
     if (button.id === 'btn-' + answer) {
 

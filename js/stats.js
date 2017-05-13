@@ -109,10 +109,7 @@ function updateUI(ids, deleteAll, content) {
 
                     // recalculate percentages
                     var correct = Math.round(correct_total / answered_total * 100);
-                    var wrong = Math.round((answered_total - correct_total) / answered_total * 100);
-                    if (correct+wrong > 100){
-                        wrong--;
-                    }
+                    var wrong = 100 - correct;
                     // concatenate '%'
                     correct += '%';
                     wrong += '%';
@@ -138,17 +135,14 @@ function updateUI(ids, deleteAll, content) {
 
 $(document).ready(function () {
     initializeUI();
-
 });
 
 function animateProgressBars(bars) {
     for(var i = 0; i < count + 1; i++){
         // calculate correct and wrong answer percentage
         var correct = Math.round(bars[i][1] / bars[i][0] * 100);
-        var wrong = Math.round((bars[i][0] - bars[i][1]) / bars[i][0] * 100);
-        if (correct+wrong > 100){
-            wrong--;
-        }
+        var wrong = 100 - correct;
+
         // concatenate '%'
         correct += '%';
         wrong += '%';
@@ -158,8 +152,8 @@ function animateProgressBars(bars) {
         // activate tooltips
         w.attr({dataToggle: 'tooltip'}).tooltip({delay: 100, title: wrong, placement: 'bottom'});
         c.attr({dataToggle: 'tooltip'}).tooltip({delay: 100, title: correct, placement: 'bottom'});
-        w.animate({width: wrong}, 200);
-        c.animate({width: correct},200);
+        w.css({width: wrong});
+        c.css({width: correct});
 
     }
 
