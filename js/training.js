@@ -88,7 +88,6 @@ function ready(id) {
 }
 
 function nextVocab () {
-    current++;
     if (current === arr.count) {
         current = 0;
         // reset progress bar
@@ -107,13 +106,15 @@ function nextVocab () {
     wrapper.html(html);
     getNewVocab(dir_global);
     $('#right-box').animate({opacity: 1}, 150);
+
+    // increment vocable index
+    current++;
 }
 
 function answerChosen(button) {
     $('#language-swap').addClass('toggle-disabled');
     // update progress bar
     var newWidth = Math.round(current/(arr.count)*100);
-    //alert(newWidth);
     $('#progress-lesson').css({width: newWidth + "%"});
 
     var wrapper = $('#right-box-wrapper');
