@@ -51,6 +51,11 @@ if (isset($_GET['id'])) {
 
 <div id="content-wrapper" class="container content-wrapper">
     <div class="row">
+        <div class="col-12">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
         <div id="left-box-wrapper" class="col-lg-6 col-sm-12">
             <div id="left-box" class="jumbotron jumbotron-transparent wordwrap">
                 <button id="language-swap" class="material-icons float-right unselectable">swap_horiz</button>

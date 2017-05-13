@@ -22,7 +22,7 @@ function randomIntArray(min, max, length, exclude) {
     if (max - min < 1) {
         return null;
     }
-    //var len = (length-1 <= (max - min) ? length : (max - min + 1));
+    var len = (length-1 <= (max - min) ? length : (max - min + 1));
 
     var numbers = [], array = [], random;
     for (var z = min, i = 0; z <= max; z++){
@@ -32,9 +32,9 @@ function randomIntArray(min, max, length, exclude) {
         numbers[i] = z;
         i++;
     }
-    for(var len = numbers.length-1; len; len--) {
+    for(var j = numbers.length-1; len; len--, j--) {
         // select random number from numbers
-        random = randomInt(0, len);
+        random = randomInt(0, j);
         // add number to final array
         array.push(numbers[random]);
         //delete that number from numbers
@@ -83,7 +83,7 @@ function ready(id) {
         data: { mode:'id', id: id_global },
         success: function (json) {
             arr = $.parseJSON(json);
-            list = randomIntArray(0, arr.count-1, arr.count-1);
+            list = randomIntArray(0, arr.count-1, arr.count);
             nextVocab();
         }
     });

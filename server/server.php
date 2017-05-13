@@ -74,7 +74,6 @@ if (isset($_POST['mode'])) {
                 mkdir('../stats/');
             }
             $stats = getStatsFilename();
-            //$stats = 'stats/stats.json';
             $exist = file_exists($stats);
 
             $filename = explode('.', $filenames[$id + 2])[0];
@@ -154,7 +153,7 @@ if (isset($_POST['mode'])) {
             $stats = getStatsFilename();
             deleteStat($id,$stats);
 
-            // TODO rearrange ids in stats.json (they will get messed up)
+            // TODO rearrange ids in stats file (they will get messed up)
 //            $content_read = json_decode(file_get_contents($stats));
 //            $content_write = array();
 //            $difference = 0;
