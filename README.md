@@ -13,6 +13,7 @@
 ###### Training dialog
 - randomly generated multiple choice dialog for both learning directions with animated swap button
 - green or red colored feedback box on answer
+- Tracked progress of lesson with progress bar
 
 ###### Statistics page
 - statistics for every lesson and in total
@@ -25,9 +26,8 @@
 #### Planned
 - English UI translation
 - Create lessons with a online editor
+- Delete files
 - Verifying of legally uploaded lesson textfiles
-- Track progress of lesson e.g. with progress bar and/or in statistics
-    - choose between random vocables or in order of `.txt` file
 
 ## Server-side generated and stored files
 - training lessons (`.txt`) - uploaded ~~or created online~~ by user
@@ -39,4 +39,4 @@
 - [Tether](http://tether.io/) v1.4.0 - tooltips
 
 ## Images
-- from [Pexels](https://www.pexels.com/) (CC0)
+- from [Pexels](https://www.pexels.com/), Creative Commons Zero License
