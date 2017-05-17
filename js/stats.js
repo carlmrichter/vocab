@@ -7,11 +7,13 @@ function initializeUI() {
         type: 'POST',
         data: { mode: 'get_stats'},
         success: function (json) {
+            //alert(json);
+
             var stats,
                 html = '',
                 total_answered = 0,
                 total_correct = 0,
-                filename, answered, wrong, correct,
+                filename, answered, wrong, correct, lang1, lang2,
                 bars = [];
             try {
                 stats = $.parseJSON(json);
@@ -25,10 +27,12 @@ function initializeUI() {
             for (var key in stats){
                 if (!stats.hasOwnProperty(key)) continue;
                 var obj = stats[key];
-                if (obj.hasOwnProperty('filename')) {
-                    filename = obj['filename'].replace('.txt', '');
-                    obj.hasOwnProperty('answered') ? answered = obj['answered'] : answered = 0;
-                    obj.hasOwnProperty('correct') ? correct = obj['correct'] : correct = 0;
+                if (obj.hasOwnProperty('filename') && obj.hasOwnProperty('stats') && obj.hasOwnProperty('lang')) {
+                    filename = obj['filename'].replace('.txt', '').replace('.csv', '');
+                    lang1 = obj['lang'].lang1;
+                    lang2 = obj['lang'].lang2;
+                    obj['stats'].hasOwnProperty('answered') ? answered = obj['stats'].answered : answered = 0;
+                    obj['stats'].hasOwnProperty('correct') ? correct = obj['stats'].correct : correct = 0;
                     wrong = answered - correct;
                     total_answered += answered;
                     total_correct += correct;
@@ -37,7 +41,7 @@ function initializeUI() {
 
                     html += '<div class="col-xl-4 col-md-6 col-sm-12 small-box-wrapper">' +
                         '<div class="jumbotron jumbotron-transparent"><i id="delete-'+ (parseInt(key)+1) +'" class="material-icons float-right unselectable delete-stats">delete</i>' +
-                        '<h2>'+ filename +'</h2>'+ obj['lang1'] + ' - '+ obj['lang2'] +'<div class="progress progress-custom-small">' +
+                        '<h2>'+ filename +'</h2>'+ lang1 + ' - '+ lang2 +'<div class="progress progress-custom-small">' +
                         '<div id="correct-'+ count +'" class="progress-bar bg-success" style="width:0;height:auto;"></div>' +
                         '<div id="wrong-'+ count +'" class="progress-bar bg-danger" style="width:0;height:auto;"></div>' +
                         '</div>Gesamt: '+ answered +' | Richtig: '+ correct +' | Falsch: '+ wrong +' </div></div>';
@@ -45,6 +49,12 @@ function initializeUI() {
 
 
             }
+            if (count === 0) {
+                document.getElementById('stats-wrapper').innerHTML = '<div class="col-md-12" style="padding: .7rem">' +
+                    '<div class="jumbotron jumbotron-transparent"><h1>Du hast noch nichts geübt!</h1></div></div>';
+                return;
+            }
+
             bars[0] = [total_answered, total_correct];
             var html_total = '<div class="col-12 big-box-wrapper">' +
                 '<div class="jumbotron jumbotron-transparent"><i id="delete-0" class="material-icons float-right unselectable delete-stats">delete</i>' +
@@ -58,11 +68,13 @@ function initializeUI() {
             $('.delete-stats').click(function () {
                 var id = $(this).attr('id');
                 var id_short = parseInt(id.substr(id.length - 1));
+                //alert(id_short);
                 $.ajax({
                     url: 'server/server.php',
                     type: 'POST',
                     data: { mode: 'delete_stat', id: id_short},
                     success: function (json) {
+                        //alert(json);
                         var arr = $.parseJSON(json);
                         //alert(ids + ' - Länge: ' + ids.length);
                         if (arr.hasOwnProperty('content')) {
@@ -76,7 +88,7 @@ function initializeUI() {
                 });
             });
             animateProgressBars(bars);
-        }
+         }
     });
 }
 

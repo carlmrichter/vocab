@@ -78,8 +78,9 @@ function ready(id) {
     $.ajax({
         type: 'POST',
         url: 'server/server.php',
-        data: { mode:'id', id: id_global },
+        data: { mode:'get_file_content', id: id_global },
         success: function (json) {
+            //alert(json);
             arr = $.parseJSON(json);
             list = randomIntArray(0, arr.count-1, arr.count);
             nextVocab();
@@ -129,7 +130,7 @@ function answerChosen(button) {
         $.ajax({
             url: 'server/server.php',
             type: 'POST',
-            data: { mode: 'stat', id: id_global, answer: 1 },
+            data: { mode: 'set_stat', id: id_global, answer: 1 },
             success: function (ret) {
                // alert(ret);
             }
@@ -146,7 +147,7 @@ function answerChosen(button) {
         $.ajax({
             url: 'server/server.php',
             type: 'POST',
-            data: { mode: 'stat', id: id_global, answer: 0 },
+            data: { mode: 'set_stat', id: id_global, answer: 0 },
             success: function (ret) {
                // alert(ret);
             }

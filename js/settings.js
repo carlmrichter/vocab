@@ -22,8 +22,8 @@ function uploadData(event) {
     var file = document.getElementById('userfile').files[0];
     var feedback = $('#feedback');
 
-    // check file extension equals txt
-    if (!file.name.endsWith('.txt')) {
+    // check file extension equals txt or csv
+    if (!file.name.endsWith('.txt') && !file.name.endsWith('.csv')) {
         feedback.addClass('alert-danger');
         feedback.html('Dieser Dateityp ist nicht erlaubt!');
         feedback.fadeIn();
@@ -40,18 +40,20 @@ function uploadData(event) {
         return;
     }
 
-    // otherwise send file data to server
+    //otherwise send file data to server
+    //$('body').load('server/upload.php', { data: result, name: file.name });
     $.ajax({
         url: 'server/upload.php',
         type: 'POST',
         data: { data: result, name: file.name },
         success: function (json) {
-
+            //alert(json);
             var answer = $.parseJSON(json);
             feedback.removeClass('alert-danger', 'alert-success');
             if (answer.success) {
                 feedback.addClass('alert-success');
                 feedback.html('<strong>'+ file.name +'</strong> erfolgreich hochgeladen!');
+                refreshUI();
             }
             else {
                 feedback.addClass('alert-danger');
@@ -74,6 +76,9 @@ function uploadData(event) {
                     case 'error_empty_file':
                         feedback.html('Die ausgewählte Datei ist leer!');
                         break;
+                    case 'error_line_count':
+                        feedback.html('Die Datei muss mindestens 5 Zeilen haben!');
+                        break;
                 }
             }
             feedback.fadeIn();
@@ -82,8 +87,9 @@ function uploadData(event) {
     });
 }
 
-$(document).ready(function () {
-   $.post('server/server.php', { mode: 'list'}, function (json) {
+function refreshUI() {
+    $.post('server/server.php', { mode: 'get_list'}, function (json) {
+        //alert(json);
         list = $.parseJSON(json);
 
         var wrapper = $('#edit-wrapper');
@@ -110,7 +116,11 @@ $(document).ready(function () {
         // });
         //wrapper.animate({opacity: 1}, 100);
 
-   })
+    })
+}
+
+$(document).ready(function () {
+   refreshUI();
 });
 
 function editFile(id) {

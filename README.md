@@ -38,5 +38,8 @@
 - [jQuery](https://jquery.com/) v3.2.1
 - [Tether](http://tether.io/) v1.4.0 - tooltips
 
+## Used APIs
+- [Language Detection API](https://github.com/detectlanguage/detectlanguage-php)
+
 ## Images
 - from [Pexels](https://www.pexels.com/), Creative Commons Zero License
