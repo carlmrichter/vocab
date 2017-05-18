@@ -72,8 +72,9 @@ if (isHtml($filename)) {
     return;
 }
 
-// check if line count >= 5
-if (substr_count($data, '\n') > 4) {
+// check if line count < 5
+$line_count = count(preg_split('/\n/',$data));
+if ($line_count < 5) {
     $return['message'] = 'error_line_count';
     echo json_encode($return);
     return;
@@ -100,7 +101,7 @@ else {
     $file = fopen($dir.$filename, 'r');
     // create entry in lang file
     $query = array("","");
-    for($i = 0; (($i < 5) && (!feof($file))); $i++) {
+    for($i = 0; (($i < 10) && (!feof($file))); $i++) {
         $line = explode(';', trim(preg_replace('/\s+/', ' ', fgetss($file))), 2);
         $query[0] = $query[0].$line[0]." ";
         $query[1] = $query[1].$line[1]." ";

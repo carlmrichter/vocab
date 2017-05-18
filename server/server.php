@@ -1,9 +1,5 @@
 <?php
 
-//ini_set('xdebug.var_display_max_depth', -1);
-//ini_set('xdebug.var_display_max_children', -1);
-//ini_set('xdebug.var_display_max_data', -1);
-
 function getFileContent($id) {
     $directory = '../training/';
     $files = scandir($directory);
@@ -94,36 +90,44 @@ function getList() {
         $return[$i - 2]['name'] = $filename_no_ext[0];
         $return[$i - 2]['ext'] = $filename_no_ext[1];
         $return[$i - 2]['line_cnt'] = $line_cnt;
-        $return[$i - 2]['lang1'] = $lang->$files[$i]->lang1;
-        $return[$i - 2]['lang2'] = $lang->$files[$i]->lang2;
+        $tmp = $files[$i];
+        $return[$i - 2]['lang1'] = $lang->$tmp->lang1;
+        $return[$i - 2]['lang2'] = $lang->$tmp->lang2;
     }
     // return answer array in json format
     return json_encode($return);
 }
 
-function deleteStat($id, $file) {
-    $files = scandir("../training/");
-    $content = json_decode(file_get_contents($file));
+function deleteStat($file, $stats) {
+    $content = json_decode(file_get_contents($stats));
     $content_array = (array)$content;
 
-    $return['ids'] = array();
-    if (count($content_array) < 2 || $id == -1) {
-        unlink($file);
-        $return['ids'][0] = -1;
-        // array key is some filename, array key of array key is an Integer
-        $return['ids'] = array_merge($return['ids'], array_keys(array_keys($content_array)));
-        return json_encode($return);
+    if (count($content_array) < 2 || $file === "all") {
+        unlink($stats);
+        return json_encode(NULL);
     }
-    //var_dump($content->$files[$id+2]);
-    unset($content->$files[$id+2]);
-    file_put_contents($file, json_encode($content));
-    $return['ids'][0] = $id;
-    $return['content'] = $content;
-    return json_encode($return);
+    unset($content->$file);
+    file_put_contents($stats, json_encode($content));
+
+    return json_encode($content);
 }
 
 function getStatsFilename() {
-    return '../stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
+    //$filename = "";
+    if (!isset($_COOKIE['id'])) {
+        // cookie is valid for 365 days
+        $time = time();
+        $nextYear = $time + (365 * 86400);
+        // get random file name out of timestamp and connected ip
+        $filename = $time . "-" . str_replace(':','',$_SERVER['REMOTE_ADDR']);
+        // set cookie to identify client
+        setcookie('id', $filename, $nextYear, "/");
+    }
+    else {
+        $filename = $_COOKIE['id'];
+    }
+    return '../stats/'.$filename.'.json';
+    //return '../stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
 }
 
 if (isset($_POST['mode'])) {
@@ -152,30 +156,52 @@ if (isset($_POST['mode'])) {
             if (!file_exists($dir_stats)) {
                 mkdir($dir_stats);
             }
-            $files = scandir($dir);
 
             $stats = new stdClass();
             $lang = new stdClass();
-            if (file_exists(getStatsFilename())) {
-                $stats = json_decode(file_get_contents(getStatsFilename()));
+            $statsFile = getStatsFilename();
+            if (file_exists($statsFile)) {
+                $stats = json_decode(file_get_contents($statsFile));
             }
             if (file_exists('../stats/lang.json')) {
                 $lang = json_decode(file_get_contents('../stats/lang.json'));
             }
 
             $return = array();
-            $count = count((array)$stats);
-            for ($i = 0; $i <= $count; $i++) {
-
-                $return[$i] = array();
-                $return[$i]['filename'] = $files[$i+2];
-                if (isset($stats->$files[$i+2])) {
-                    $return[$i]['stats'] = $stats->$files[$i+2];
-                }
-                if (isset($lang->$files[$i+2])) {
-                    $return[$i]['lang'] = $lang->$files[$i+2];
+            //var_dump($lang);
+            //var_dump($stats);
+            $stats = (array)$stats;
+            //var_dump($stats);
+            $count = count($stats);
+            //var_dump($count);
+            $files = array_keys($stats);
+            //var_dump($files);
+            $order = scandir($dir);
+            $file_count = count($order);
+            $files_ordered = array();
+            // order files array like files are stored in file system
+            for ($j = 2, $index = 0; $j < $file_count; $j++) {
+                for ($k = 0; $k < $count; $k++) {
+                    if ($order[$j] === $files[$k]) {
+                        $files_ordered[$index] = $files[$k];
+                        $index++;
+                    }
                 }
             }
+            $files = $files_ordered;
+            //var_dump($files);
+            for ($i = 0; $i < $count; $i++) {
+                $tmp = $files[$i];
+                $return[$i] = array();
+                $return[$i]['filename'] = $tmp;
+                if (isset($stats[$tmp])) {
+                    $return[$i]['stats'] = $stats[$tmp];
+                }
+                if (isset($lang->$tmp)) {
+                    $return[$i]['lang'] = $lang->$tmp;
+                }
+            }
+            //var_dump($return);
             echo json_encode($return);
             break;
 
@@ -186,10 +212,9 @@ if (isset($_POST['mode'])) {
 
 
         case 'delete_stat':
-            if (isset($_POST['id'])) {
-                $id = $_POST['id'] - 1;
+            if (isset($_POST['file'])) {
                 $stats = getStatsFilename();
-                echo deleteStat($id, $stats);
+                echo deleteStat($_POST['file'], $stats);
             }
             break;
 

@@ -80,10 +80,10 @@ if (isset($_GET['id'])) {
 <!-- bootstrap JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
-<script src="js/training.js"></script>
+<script src="js/training.min.js"></script>
 <script>
     $(document).ready(ready(<?=$id?>));
 </script>
-<script src="js/common.js"></script>
+<script src="js/common.min.js"></script>
 </body>
 </html>

@@ -80,7 +80,6 @@ function ready(id) {
         url: 'server/server.php',
         data: { mode:'get_file_content', id: id_global },
         success: function (json) {
-            //alert(json);
             arr = $.parseJSON(json);
             list = randomIntArray(0, arr.count-1, arr.count);
             nextVocab();

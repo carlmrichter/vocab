@@ -47,7 +47,6 @@ function uploadData(event) {
         type: 'POST',
         data: { data: result, name: file.name },
         success: function (json) {
-            //alert(json);
             var answer = $.parseJSON(json);
             feedback.removeClass('alert-danger', 'alert-success');
             if (answer.success) {

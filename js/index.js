@@ -9,7 +9,6 @@ function loadEntries() {
         type: 'POST',
         data: { mode: 'get_list'},
         success: function (json) {
-            //alert(json);
             var arr = $.parseJSON(json);
             if (arr.length === 0) {
                 document.getElementById('content-wrapper').innerHTML = '<div class="jumbotron jumbotron-transparent">' +

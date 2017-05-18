@@ -94,7 +94,13 @@
                     <div class="form-group">
                         <input id="userfile" type="file" class="form-control-file" accept=".txt,.csv"/>
                         <small class="form-text text-muted">
-                            Lektionsdateien können als <code>.txt</code> oder <code>.csv</code> hochgeladen werden und dürfen maximal 100 KB groß sein. Dateien mit HTML- bzw. PHP-Tags im Namen sind nicht erlaubt.
+                            Einschränkungen für den Dateiupload:
+                            <ul>
+                                <li>Dateiformat:  <code>.txt</code> oder <code>.csv</code>, mit Semikolon getrennte Werte</li>
+                                <li>Größe: maximal 100 KB</li>
+                                <li>Mindestlänge: 5 Zeilen</li>
+                                <li>Dateiname: keine HTML- bzw. PHP-Tags</li>
+                            </ul>
                         </small>
                     </div>
                     <div id="feedback" class="alert" role="alert"></div>
@@ -115,7 +121,7 @@
 <!-- bootstrap JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <!-- own JavaScript -->
-<script src="js/settings.js"></script>
-<script src="js/common.js"></script>
+<script src="js/settings.min.js"></script>
+<script src="js/common.min.js"></script>
 </body>
 </html>
