@@ -109,7 +109,7 @@ function refreshUI() {
         // });
         //
         $('.delete-file').click(function (event) {
-            alert('Test');
+            //alert('Test');
             var str_id = $(this).attr('id');
             var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
             deleteFile(id, $(this));

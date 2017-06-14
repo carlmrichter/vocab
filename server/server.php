@@ -230,7 +230,7 @@ if (isset($_POST['mode'])) {
 
             // delete stats for that lesson
             $stats = getStatsFilename();
-            deleteStat($file, $stats);
+            deleteStat($files[$id + 2], $stats);
             break;
 
         default:
