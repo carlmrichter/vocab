@@ -108,11 +108,12 @@ function refreshUI() {
         //
         // });
         //
-        // $('.delete-file').click(function (event) {
-        //     var str_id = $(this).attr('id');
-        //     var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
-        //     deleteFile(id);
-        // });
+        $('.delete-file').click(function (event) {
+            alert('Test');
+            var str_id = $(this).attr('id');
+            var id = parseInt(str_id.substr(str_id.length-1,str_id.length));
+            deleteFile(id, $(this));
+        });
         //wrapper.animate({opacity: 1}, 100);
 
     })
@@ -126,8 +127,9 @@ function editFile(id) {
 
 }
 
-function deleteFile(id) {
-    $.post('server/server.php', {mode: 'delete_file', id: id}, function (json) {
-        // TODO delete row with id=... from UI
+function deleteFile(id, button) {
+    $.post('server/server.php', {mode: 'delete_file', id: id}, function () {
+        // delete row from UI
+        button.parents('tr').remove();
     })
 }

@@ -113,6 +113,42 @@
     </div>
 </div>
 
+<!-- TODO: Dialog for deleting -->
+<!--
+
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form onsubmit="uploadFile(event);">
+                <div class="modal-header">
+                    <h5 class="modal-title">Datei hochladen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="upload-body" class="modal-body">
+                    <div class="form-group">
+                        <input id="userfile" type="file" class="form-control-file" accept=".txt,.csv"/>
+                        <small class="form-text text-muted">
+                            Einschränkungen für den Dateiupload:
+                            <ul>
+                                <li>Dateiformat:  <code>.txt</code> oder <code>.csv</code>, mit Semikolon getrennte Werte</li>
+                                <li>Größe: maximal 100 KB</li>
+                                <li>Mindestlänge: 5 Zeilen</li>
+                                <li>Dateiname: keine HTML- bzw. PHP-Tags</li>
+                            </ul>
+                        </small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="button-delete" class="btn btn-primary vertical-align"><i class="material-icons" aria-hidden="true" style="padding-right: .25rem">file_upload</i>Löschen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+-->
+
 
 <!-- jQuery JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -122,6 +158,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <!-- own JavaScript -->
 <script src="js/settings.min.js"></script>
+<!-- cookies -->
+<script src="js/lib/js.cookie.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script src="js/common.min.js"></script>
 </body>
 </html>

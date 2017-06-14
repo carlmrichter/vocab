@@ -113,8 +113,11 @@ function deleteStat($file, $stats) {
 }
 
 function getStatsFilename() {
-    //$filename = "";
-    if (!isset($_COOKIE['id'])) {
+    // if cookies are not allowed by user
+    if (!isset($_COOKIE['cookieconsent_status'])) {
+        $filename = 'no_cookies';
+    }   // if cookie 'id' is not set, set it
+    else if (!isset($_COOKIE['id']) and $_COOKIE['cookieconsent_status'] === 'dismiss') {
         // cookie is valid for 365 days
         $time = time();
         $nextYear = $time + (365 * 86400);
@@ -122,12 +125,11 @@ function getStatsFilename() {
         $filename = $time . "-" . str_replace(':','',$_SERVER['REMOTE_ADDR']);
         // set cookie to identify client
         setcookie('id', $filename, $nextYear, "/");
-    }
+    } // otherwise take id as filename
     else {
         $filename = $_COOKIE['id'];
     }
     return '../stats/'.$filename.'.json';
-    //return '../stats/'.str_replace(':','',$_SERVER['REMOTE_ADDR']).'.json';
 }
 
 if (isset($_POST['mode'])) {
@@ -220,26 +222,15 @@ if (isset($_POST['mode'])) {
 
 
         case 'delete_file':
-            // TODO delete file physically
+            // delete file physically
             $id = $_POST['id'];
             $files = scandir('../training');
             $file = '../training/'.$files[$id + 2];
             unlink($file);
 
-            // TODO delete stats for that lesson
+            // delete stats for that lesson
             $stats = getStatsFilename();
-            deleteStat($id,$stats);
-
-            // TODO rearrange ids in stats file (they will get messed up)
-//            $content_read = json_decode(file_get_contents($stats));
-//            $content_write = array();
-//            $difference = 0;
-//            foreach ($content_read as $key => $value) {
-//                if ($key == $id) $difference--;
-//                $key2 = $ke
-//                $content_write->($key-$difference)
-//
-//            }
+            deleteStat($file, $stats);
             break;
 
         default:

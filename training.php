@@ -84,6 +84,11 @@ if (isset($_GET['id'])) {
 <script>
     $(document).ready(ready(<?=$id?>));
 </script>
+
+<!-- cookies -->
+<script src="js/lib/js.cookie.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script src="js/common.min.js"></script>
 </body>
 </html>
